@@ -29,7 +29,8 @@ const RenderFetchData = async (Url) => {
      <div  >
          <h1>${element.name.common}</h1>
          <p class='detail-page'> Native Name: ${
-           Object.values(element.name.nativeName)[0].common
+           Object.values(element.name.nativeName)[0].common ||
+           element.name.nativeName
          }</p>
          <p>Population: ${element.population}</p>
          <p>Region: ${element.region}</p>

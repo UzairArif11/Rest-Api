@@ -74,7 +74,8 @@ font-weight: 300, 600, 800;
         #CardsContainer{
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+             justify-content: center;
+
         }
         .card{
             position: relative;
@@ -117,15 +118,15 @@ font-weight: 300, 600, 800;
         } 
         .card .description{
             margin-top: 4px; 
-            padding: 4px;
+            margin: 14px;
         }
        
         #backButton{
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: 0.3rem;
+            left: 0.5rem;
             height: 23px;
-            width: 23px;
+            width: 33px;
             display: none;
         }
 
@@ -178,13 +179,35 @@ font-weight: 300, 600, 800;
        
         .card2 .description{
             margin-left: 30%;
-            position: relative;
-            display: flex;
             flex-direction: row;
             align-items:center;
             justify-content: space-between;
         }
-        .card2 .description div{
-            margin: 0px 23px;
+        
+
+                @media screen and (max-width: 328px) {.card{
+                    width: 95vw;
+                }}
+        @media screen and (max-width: 828px) {
+            .card{
+                width: 40vw;
+            }
+            .card2 .image2{
+                width: 100%;
+            height: 20%;
             
+        
+            }
+            .card2 .description{
+                
+                margin-top: 30%;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items:start;
+                justify-content: start;
+            }
+            .card2 .description div{
+                margin: 0px ;
+          }
         }
