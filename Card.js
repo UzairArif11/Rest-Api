@@ -67,16 +67,7 @@ toggleMode.addEventListener("change", () => {
     Body.style.backgroundColor = "rgb(74, 77, 84)";
     Navbar.style.backgroundColor = "rgb(59, 63, 73)";
     Navbar.style.color = "white";
-    inputSearch.style.backgroundColor = "rgb(59, 63, 73)";
-    inputSearch.style.color = "white";
-    filter.style.backgroundColor = "rgb(59, 63, 73)";
-    filter.style.color = "white";
-    Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.backgroundColor = "rgb(59, 63, 73)")
-    );
-    Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.color = "white")
-    );
+
     Array.from(document.getElementsByClassName("card2")).forEach(
       (e) => (e.style.backgroundColor = "rgb(59, 63, 73)")
     );
@@ -88,16 +79,7 @@ toggleMode.addEventListener("change", () => {
     Body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
     Navbar.style.color = "hsl(0, 0%, 52%)";
-    inputSearch.style.backgroundColor = " hsl(0, 0%, 100%)";
-    inputSearch.style.color = "hsl(0, 0%, 52%)";
-    filter.style.backgroundColor = " hsl(0, 0%, 100%)";
-    filter.style.color = "hsl(0, 0%, 52%)";
-    Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
-    );
-    Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.color = "black")
-    );
+
     Array.from(document.getElementsByClassName("card2")).forEach(
       (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
     );
@@ -110,4 +92,3 @@ toggleMode.addEventListener("change", () => {
 
 // window.addEventListener("load", filterRegion);
 ShowAllCountries();
-filterRegion();

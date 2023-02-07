@@ -103,6 +103,7 @@ inputSearch.addEventListener("keyup", (e) => {
       "file:///C:/Users/HP/Desktop/Rest%20Api/SearchByCountry.html"
     );
     sessionStorage.setItem("value", e.target.value);
+    e.target.value = "";
   }
 });
 
