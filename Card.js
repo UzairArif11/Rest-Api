@@ -62,7 +62,7 @@ const RenderFetchData = async (Url) => {
 };
 // Back botton and Toggle botton logic
 backButton.addEventListener("click", () => {
-  window.location.reload();
+  history.back();
 });
 toggleMode.addEventListener("change", () => {
   if (switchMode) {
