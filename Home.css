@@ -130,11 +130,7 @@ font-weight: 300, 600, 800;
             display: none;
         }
 
-           /* styles for the detail page */
-      .detail-page {
-        display: none;
-       
-      }
+        
       .show {
         display: block;
       }
