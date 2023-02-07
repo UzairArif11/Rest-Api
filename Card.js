@@ -64,28 +64,28 @@ backButton.addEventListener("click", () => {
 });
 toggleMode.addEventListener("change", () => {
   if (switchMode) {
-    Body.style.backgroundColor = "rgb(74, 77, 84)";
-    Navbar.style.backgroundColor = "rgb(59, 63, 73)";
+    Body.style.backgroundColor = "#3B4959";
+    Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
-
     Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.backgroundColor = "rgb(59, 63, 73)")
+      (e) => (e.style.backgroundColor = "#3B4959")
     );
     Array.from(document.getElementsByClassName("card2")).forEach(
       (e) => (e.style.color = "white")
     );
+
     switchMode = false;
   } else {
     Body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
     Navbar.style.color = "hsl(0, 0%, 52%)";
-
     Array.from(document.getElementsByClassName("card2")).forEach(
       (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
     );
     Array.from(document.getElementsByClassName("card2")).forEach(
       (e) => (e.style.color = "black")
     );
+
     switchMode = true;
   }
 });

@@ -25,10 +25,10 @@ const RenderFetchData = async (Url) => {
       card.innerHTML = `<div class="image"><img src=${element.flags.png} alt="flag image"></div>
      <div class="description">
      <div  >
-         <h1>${element.name.common}</h1>
-         <p>Population: ${element.population}</p>
-         <p>Region: ${element.region}</p>
-         <p>Capital: ${element.capital}</p>
+         <h1><b>${element.name.common}</b></h1>
+         <p><b>Population</b>: ${element.population}</p>
+         <p><b>Region:</b> ${element.region}</p>
+         <p><b>Capital:</b> ${element.capital}</p>
     </div>
      </div>`;
       //OnClick Card Showing detail of country
@@ -52,25 +52,20 @@ backButton.addEventListener("click", () => {
 
 toggleMode.addEventListener("change", () => {
   if (switchMode) {
-    Body.style.backgroundColor = "rgb(74, 77, 84)";
-    Navbar.style.backgroundColor = "rgb(59, 63, 73)";
+    Body.style.backgroundColor = "#3B4959";
+    Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
-    inputSearch.style.backgroundColor = "rgb(59, 63, 73)";
+    inputSearch.style.backgroundColor = "#2D3743";
     inputSearch.style.color = "white";
-    filter.style.backgroundColor = "rgb(59, 63, 73)";
+    filter.style.backgroundColor = "#2D3743";
     filter.style.color = "white";
     Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.backgroundColor = "rgb(59, 63, 73)")
+      (e) => (e.style.backgroundColor = "#2D3743")
     );
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.color = "white")
     );
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.backgroundColor = "rgb(59, 63, 73)")
-    );
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.color = "white")
-    );
+
     switchMode = false;
   } else {
     Body.style.backgroundColor = "hsl(0, 0%, 98%)";
@@ -86,12 +81,7 @@ toggleMode.addEventListener("change", () => {
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.color = "black")
     );
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
-    );
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.color = "black")
-    );
+
     switchMode = true;
   }
 });
