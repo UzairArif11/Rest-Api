@@ -34,7 +34,7 @@ const RenderFetchData = async (Url) => {
       //OnClick Card Showing detail of country
       card.addEventListener("click", () => {
         window.location.assign(
-          "file:///C:/Users/HP/Desktop/Rest%20Api/Card/Card.html"
+          "file:///C:/Users/Admin/OneDrive%20-%20Higher%20Education%20Commission/Desktop/RestCountry/Card/Card.html"
         );
         sessionStorage.setItem("value", element.name.common);
       });
@@ -90,8 +90,7 @@ toggleMode.addEventListener("change", () => {
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     window.location.assign(
-      "file:///C:/Users/HP/Desktop/Rest%20Api/Searchcountry/SearchByCountry.html"
-    );
+'file:///C:/Users/Admin/OneDrive%20-%20Higher%20Education%20Commission/Desktop/RestCountry/Searchcountry/SearchByCountry.html'    );
     sessionStorage.setItem("value", e.target.value);
     e.target.value = "";
   }
