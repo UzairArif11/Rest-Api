@@ -10,7 +10,11 @@ let switchMode = false;
 
 // Home page Show all country data
 const ShowAllCountries = () => {
-  const Url = "https://restcountries.com/v3.1/all";
+  var value = sessionStorage.getItem("value");
+  CardContainer.innerHTML = "";
+  const Url = `https://restcountries.com/v3.1/name/${value}`;
+  backButton.style.display = "block";
+
   RenderFetchData(Url);
 };
 // Component to fetch country data
@@ -21,65 +25,36 @@ const RenderFetchData = async (Url) => {
 
     data.map((element) => {
       const card = document.createElement("div");
-      card.classList.add("card");
-      card.innerHTML = `<div class="image"><img src=${
+      card.classList.add("card2");
+      card.innerHTML = `<div class="image2"><img src=${
         element.flags.png
       } alt="flag image"></div>
      <div class="description">
      <div  >
          <h1>${element.name.common}</h1>
-         <p class='detail-page'> Native Name: ${
+         <p > Native Name: ${
            Object.values(element.name.nativeName)[0].common ||
            element.name.nativeName
          }</p>
          <p>Population: ${element.population}</p>
          <p>Region: ${element.region}</p>
-         <p class='detail-page'>Sub Region: ${element.subregion}</p>
+         <p >Sub Region: ${element.subregion}</p>
          <p>Capital: ${element.capital}</p>
     </div>
-    <div class='detail-page '>
+    <div  '>
          <p>Top Level Domain: ${element.capital}</p>
          <p>Currencies: ${element.capital}</p>
          <p>Languages: ${Object.values(element.languages)[0]}</p>
     </div>
     
-    <div class='detail-page '>
+    <div  '>
         <p class='borderCountry'>Border Countries:
         ${element.borders}
         </p>
     </div>
      </div>`;
 
-      card.addEventListener("click", () => {
-        window.location.assign(
-          "file:///C:/Users/HP/Desktop/Rest%20Api/Card.html"
-        );
-        sessionStorage.setItem("value", element.name.common);
-      });
-
       CardContainer.appendChild(card);
-
-      //OnClick Card Showing detail of country
-      if (dataTransfer) {
-        //   Adding classes for detail page
-
-        let details = document.querySelectorAll(".detail-page");
-        details.forEach((e) => {
-          e.classList.remove("detail-page");
-        });
-
-        let Carddetails = document.querySelectorAll(".card");
-        Carddetails.forEach((e) => {
-          e.classList.remove("card");
-          e.classList.add("card2");
-        });
-
-        let Imagedetails = document.querySelectorAll(".image");
-        Imagedetails.forEach((e) => {
-          e.classList.remove("image");
-          e.classList.add("image2");
-        });
-      }
     });
   } catch (error) {
     console.log(error);
