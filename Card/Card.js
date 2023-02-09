@@ -40,8 +40,8 @@ const RenderFetchData = async (Url) => {
          <p>Capital: ${element.capital}</p>
     </div>
     <div  '>
-         <p>Top Level Domain: ${element.capital}</p>
-         <p>Currencies: ${element.capital}</p>
+         <p>Top Level Domain: ${element.tld}</p>
+         <p>Currencies: ${Object.values(element.currencies)[0].name}</p>
          <p>Languages: ${Object.values(element.languages)[0]}</p>
     </div>
     
