@@ -95,7 +95,7 @@ toggleMode.addEventListener("change", () => {
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     window.location.assign(
-      "file:///C:/Users/HP/Desktop/Rest%20Api/SearchByCountry.html"
+      "file:///C:/Users/HP/Desktop/Rfile:///C:/Users/HP/Desktop/Rest%20Api/Searchcountry/SearchByCountry.htmlest%20Api/SearchByCountry.html"
     );
     sessionStorage.setItem("value", e.target.value);
   }
@@ -115,7 +115,7 @@ const filterRegion = async () => {
   });
 };
 
-filter.addEventListener("change", (event) => {
+filter.addEventListener("click", (event) => {
   if (event.target.value === "") return;
 
   CardContainer.innerHTML = "";

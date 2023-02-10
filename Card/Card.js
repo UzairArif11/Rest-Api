@@ -4,7 +4,7 @@ const toggleMode = document.getElementById("toggle-mode");
 const Body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
 let dataTransfer = false;
-let switchMode = false;
+let switchMode = sessionStorage.getItem("switchMode");
 
 // Home page Show all country data
 const ShowAllCountries = () => {
@@ -62,8 +62,19 @@ const RenderFetchData = async (Url) => {
 backButton.addEventListener("click", () => {
   history.back();
 });
-toggleMode.addEventListener("change", () => {
+
+const toggleFunction = () => {
   if (switchMode) {
+    Body.style.backgroundColor = "hsl(0, 0%, 98%)";
+    Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
+    Navbar.style.color = "hsl(0, 0%, 52%)";
+    Array.from(document.getElementsByClassName("card2")).forEach(
+      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
+    );
+    Array.from(document.getElementsByClassName("card2")).forEach(
+      (e) => (e.style.color = "black")
+    );
+  } else {
     Body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
@@ -73,7 +84,20 @@ toggleMode.addEventListener("change", () => {
     Array.from(document.getElementsByClassName("card2")).forEach(
       (e) => (e.style.color = "white")
     );
-
+  }
+  console.log(switchMode);
+};
+toggleMode.addEventListener("click", () => {
+  if (switchMode == true) {
+    Body.style.backgroundColor = "#3B4959";
+    Navbar.style.backgroundColor = "#2D3743";
+    Navbar.style.color = "white";
+    Array.from(document.getElementsByClassName("card2")).forEach(
+      (e) => (e.style.backgroundColor = "#3B4959")
+    );
+    Array.from(document.getElementsByClassName("card2")).forEach(
+      (e) => (e.style.color = "white")
+    );
     switchMode = false;
   } else {
     Body.style.backgroundColor = "hsl(0, 0%, 98%)";
@@ -85,10 +109,9 @@ toggleMode.addEventListener("change", () => {
     Array.from(document.getElementsByClassName("card2")).forEach(
       (e) => (e.style.color = "black")
     );
-
     switchMode = true;
   }
 });
-
 // window.addEventListener("load", filterRegion);
 ShowAllCountries();
+toggleFunction();

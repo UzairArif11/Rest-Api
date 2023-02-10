@@ -34,9 +34,10 @@ const RenderFetchData = async (Url) => {
       //OnClick Card Showing detail of country
       card.addEventListener("click", () => {
         window.location.assign(
-          "file:///C:/Users/Admin/OneDrive%20-%20Higher%20Education%20Commission/Desktop/RestCountry/Card/Card.html"
+          "file:///C:/Users/HP/Desktop/Rest%20Api/Card/Card.html"
         );
         sessionStorage.setItem("value", element.name.common);
+        sessionStorage.setItem("switchMode", switchMode);
       });
 
       CardContainer.appendChild(card);
@@ -50,7 +51,7 @@ backButton.addEventListener("click", () => {
 });
 //Toggle botton logic
 
-toggleMode.addEventListener("change", () => {
+toggleMode.addEventListener("click", () => {
   if (switchMode) {
     Body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
@@ -90,7 +91,8 @@ toggleMode.addEventListener("change", () => {
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     window.location.assign(
-'file:///C:/Users/Admin/OneDrive%20-%20Higher%20Education%20Commission/Desktop/RestCountry/Searchcountry/SearchByCountry.html'    );
+      "file:///C:/Users/HP/Desktop/Rest%20Api/Searchcountry/SearchByCountry.html"
+    );
     sessionStorage.setItem("value", e.target.value);
     e.target.value = "";
   }
@@ -103,9 +105,12 @@ const filterRegion = async () => {
 
   let response = await fetch(Url);
   let data = await response.json();
-  data.map((element) => {
+
+  let regions = [...new Set(data.map(({ region }) => region))];
+
+  regions.forEach((region) => {
     const option = document.createElement("option");
-    option.innerText = element.region;
+    option.innerText = region;
     filter.appendChild(option);
   });
 };
