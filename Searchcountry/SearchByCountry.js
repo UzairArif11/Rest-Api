@@ -3,7 +3,7 @@ const inputSearch = document.getElementById("myInput");
 const filter = document.getElementById("filter");
 const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
-const Body = document.querySelector("body");
+const body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
 let dataTransfer = false;
 let switchMode = localStorage.getItem("switchMode");
@@ -12,7 +12,7 @@ let switchMode = localStorage.getItem("switchMode");
 const ShowAllCountries = () => {
   var value = localStorage.getItem("value");
   CardContainer.innerHTML = "";
-  const Url = `https://restcountries.com/v3.1/name/${value}`;
+  const Url = `https://restcountries.com/v3.1/name/${value}?fullText=true`;
   backButton.style.display = "block";
   RenderFetchData(Url);
 };
@@ -61,7 +61,7 @@ backButton.addEventListener("click", () => {
 
 const toggleFunction = () => {
   if (switchMode =="false") {
-    Body.style.backgroundColor = "#3B4959";
+    body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
     inputSearch.style.backgroundColor = "#2D3743";
@@ -76,7 +76,7 @@ const toggleFunction = () => {
     );
 
   } else {
-    Body.style.backgroundColor = "hsl(0, 0%, 98%)";
+    body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
     Navbar.style.color = "hsl(0, 0%, 52%)";
     inputSearch.style.backgroundColor = " hsl(0, 0%, 100%)";

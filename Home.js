@@ -3,7 +3,7 @@ const inputSearch = document.getElementById("myInput");
 const backButton = document.getElementById("backButton");
 const filter = document.getElementById("filter");
 const toggleMode = document.getElementById("toggle-mode");
-const Body = document.querySelector("body");
+const body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
 
 let switchMode = localStorage.getItem("switchMode"); ;
@@ -24,12 +24,12 @@ const RenderFetchData = async (Url) => {
       card.classList.add("card");
       card.innerHTML = `<div class="image"><img src=${element.flags.png} alt="flag image"></div>
      <div class="description">
-     <div  >
-         <h1><b>${element.name.common}</b></h1>
+  
+         <h3 ><b>${element.name.common}</b></h1>
          <p><b>Population</b>: ${element.population}</p>
          <p><b>Region:</b> ${element.region}</p>
          <p><b>Capital:</b> ${element.capital}</p>
-    </div>
+    
      </div>`;
       //OnClick Card Showing detail of country
       card.addEventListener("click", () => {
@@ -56,13 +56,15 @@ backButton.addEventListener("click", () => {
 
 const toggleFunction = () => {
   if (switchMode =="false") {
-    Body.style.backgroundColor = "#3B4959";
+    body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
     inputSearch.style.backgroundColor = "#2D3743";
     inputSearch.style.color = "white";
+    inputSearch.style.border = "white";
     filter.style.backgroundColor = "#2D3743";
     filter.style.color = "white";
+    filter.style.border = "white";
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.backgroundColor = "#2D3743")
     );
@@ -71,13 +73,15 @@ const toggleFunction = () => {
     );
 
   } else {
-    Body.style.backgroundColor = "hsl(0, 0%, 98%)";
+    body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
     Navbar.style.color = "hsl(0, 0%, 52%)";
     inputSearch.style.backgroundColor = " hsl(0, 0%, 100%)";
     inputSearch.style.color = "hsl(0, 0%, 52%)";
+    inputSearch.style.border = "hsl(0, 0%, 52%)";
     filter.style.backgroundColor = " hsl(0, 0%, 100%)";
     filter.style.color = "hsl(0, 0%, 52%)";
+    filter.style.border = "hsl(0, 0%, 52%)";
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
     );

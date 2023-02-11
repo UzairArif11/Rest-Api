@@ -15,7 +15,7 @@ font-weight: 300, 600, 800;
     top: 0;
     left: 0;
     right: 0;
-z-index: 1;
+    z-index: 1;
     background-color:#2D3743;
     color: white;
     display: flex;
@@ -50,22 +50,17 @@ z-index: 1;
 }
         /* Card section */
         #CardsContainer{
-            display: flex;
-            flex-wrap: wrap;
-             justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+             justify-content: space-around;
 
         }
-        .card{
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 260px;
-            height: 415px;
+        .card{  display: grid;
+            grid-template-rows: 1fr 1fr;
             background-color: #2D3743;
             color: white;
-            margin: 15px;
+            margin: 1rem;
+          border-radius: 5px;
             overflow: hidden;
             box-shadow: 0 0.25rem 0.5rem rgb(98 95 95);
             transition: all 0.3s;
@@ -78,29 +73,18 @@ z-index: 1;
           }
         
          .card .image{
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-        height: 10rem;
         object-fit: cover;
-     
-       
             
         }
         .card .image img{
             width: 100%;
         height: 100%;
         object-fit: cover;
-      
-        margin-bottom: 1rem;
             
         } 
         .card .description{
-            position: absolute;
-         top: 10rem;
-            margin: 14px;
+            padding-left: 20px;
+           font-size: small;
         }
        
         #backButton{
@@ -117,75 +101,103 @@ z-index: 1;
       .show {
         display: block;
       }
-  .card2{
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            width: 95vw;
-            height: fit-content;
-            background-color: #3B4959;;
-            color: white;
-            margin: 23px;
-            overflow: hidden;
-            transition: all 0.3s
-
-        }
-        .card2 .image2{
-            width: 30%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-    top: 0;
-    left: 0;
-    
-       
-        
-            
-        }
-        .card2 .image2 img{
-            width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .bold-h2 {
+        font-weight: 900, 600, 800;
       
-     
-        }
-       
-        .card2 .description{
-            margin-left: 30%;
-            flex-direction: row;
-            align-items:center;
-            justify-content: space-between;
-        }
-        
+      }
 
-                @media screen and (max-width: 328px) {.card{
-                    width: 95vw;
-                    font-size: small;
-                }}
-        @media screen and (max-width: 828px) {
-            .card{font-size: small;
-               
-                
-            }
-            .card2 .image2{
-                width: 100%;
-            height: 20%;
-            
-        
-            }
-            .card2 .description{
-                
-                margin-top: 30%;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                align-items:start;
-                justify-content: start;
-            }
-            .card2 .description div{
-                margin: 0px ;
-          }
+     
+      #card2 .image2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        grid-area: image2;
+      }
+      
+      #card2 .des1 {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+        grid-area: des1;
+      }
+      
+      #card2 .des2 {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+        grid-area: des2;
+      }
+      
+      #card2 .des3 {
+        grid-area: des3;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+      }
+      
+      #card2{
+        display: grid;
+        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        grid-template-rows: 1fr 0.2fr;
+        grid-template-areas:
+            "image2 des1 des2"
+            "image2 des3 des3";
+        grid-gap: 1rem;
+        text-align: center;
+        background-color: white;
+        margin: 1%;
+       
+    }
+    #card2 .image2 img{
+        width: 100%;
+    height: 100%;
+    object-fit: cover;
+  
+        box-shadow: 0 0.25rem 0.5rem rgb(98 95 95);
+        transition: all 0.3s;
+}
+      
+      @media screen and (max-width: 828px) {
+        #card2 {
+            grid-template-columns: auto;
+          grid-template-rows: 1fr;
+          grid-template-areas:
+            "image2"
+            "des1"
+            "des2"
+            "des3";
         }
-        
+      }
+      
+      #card2 .image2 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+  
+
+               
+        @media screen and (max-width: 828px) {
+            #CardsContainer{
+               width: 80%;
+                grid-template-columns:1fr 1fr;
+                margin: auto;
+    
+            }
+           
+            }
+        @media screen and (max-width: 448px) {
+            #CardsContainer{
+               width: 80%;
+                grid-template-columns:1fr ;
+                margin: auto;
+    
+            }
+           
+            }
+          
