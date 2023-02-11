@@ -6,11 +6,11 @@ const toggleMode = document.getElementById("toggle-mode");
 const Body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
 let dataTransfer = false;
-let switchMode = false;
+let switchMode = localStorage.getItem("switchMode");
 
 // Home page Show all country data
 const ShowAllCountries = () => {
-  var value = sessionStorage.getItem("value");
+  var value = localStorage.getItem("value");
   CardContainer.innerHTML = "";
   const Url = `https://restcountries.com/v3.1/name/${value}`;
   backButton.style.display = "block";
@@ -39,10 +39,12 @@ const RenderFetchData = async (Url) => {
         const currentUrl = window.location.href;
         const newUrl = currentUrl.replace('/Searchcountry/SearchByCountry.html', '/Card/Card.html');
         window.location.assign(newUrl);
-        sessionStorage.setItem("value", element.name.common);
+        localStorage.setItem("value", element.name.common);
+        localStorage.setItem("switchMode", switchMode);
       });
 
       CardContainer.appendChild(card);
+      toggleFunction();
 
       //OnClick Card Showing detail of country
     });
@@ -53,10 +55,12 @@ const RenderFetchData = async (Url) => {
 // Back botton and Toggle botton logic
 
 backButton.addEventListener("click", () => {
+  localStorage.setItem("switchMode", switchMode);
   history.back();
 });
-toggleMode.addEventListener("change", () => {
-  if (switchMode) {
+
+const toggleFunction = () => {
+  if (switchMode =="false") {
     Body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
@@ -71,7 +75,6 @@ toggleMode.addEventListener("change", () => {
       (e) => (e.style.color = "white")
     );
 
-    switchMode = false;
   } else {
     Body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
@@ -87,8 +90,13 @@ toggleMode.addEventListener("change", () => {
       (e) => (e.style.color = "black")
     );
 
-    switchMode = true;
   }
+ 
+};
+
+toggleMode.addEventListener("click", () => {
+ switchMode=switchMode==="true" ? "false" : "true";
+ toggleFunction();
 });
 // Search by country name
 
@@ -98,7 +106,7 @@ inputSearch.addEventListener("keyup", (e) => {
     const newUrl = currentUrl
     window.location.assign(newUrl);
    
-    sessionStorage.setItem("value", e.target.value);
+    localStorage.setItem("value", e.target.value);
   }
 });
 
@@ -128,3 +136,4 @@ filter.addEventListener("click", (event) => {
 // window.addEventListener("load", filterRegion);
 ShowAllCountries();
 filterRegion();
+toggleFunction();

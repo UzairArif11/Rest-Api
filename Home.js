@@ -6,7 +6,7 @@ const toggleMode = document.getElementById("toggle-mode");
 const Body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
 
-let switchMode = false;
+let switchMode = localStorage.getItem("switchMode"); ;
 
 // Home page Show all country data
 const ShowAllCountries = () => {
@@ -37,23 +37,25 @@ const RenderFetchData = async (Url) => {
         const newUrl = currentUrl.replace('/Home.html', '/Card/Card.html');
         window.location.assign(newUrl);
         
-        sessionStorage.setItem("value", element.name.common);
-        sessionStorage.setItem("switchMode", switchMode);
+        localStorage.setItem("value", element.name.common);
+        localStorage.setItem("switchMode", switchMode);
       });
 
       CardContainer.appendChild(card);
+      toggleFunction();
     });
   } catch (error) {
     console.log(error);
   }
 };
 backButton.addEventListener("click", () => {
+  localStorage.getItem("switchMode");
   location.reload();
 });
 //Toggle botton logic
 
-toggleMode.addEventListener("click", () => {
-  if (switchMode) {
+const toggleFunction = () => {
+  if (switchMode =="false") {
     Body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
@@ -68,7 +70,6 @@ toggleMode.addEventListener("click", () => {
       (e) => (e.style.color = "white")
     );
 
-    switchMode = false;
   } else {
     Body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
@@ -84,9 +85,18 @@ toggleMode.addEventListener("click", () => {
       (e) => (e.style.color = "black")
     );
 
-    switchMode = true;
   }
+  localStorage.setItem("switchMode", switchMode);
+  
+};
+
+toggleMode.addEventListener("click", () => {
+ switchMode=switchMode==="true" ? "false" : "true";
+ toggleFunction();
 });
+
+
+
 // Search by country name
 
 inputSearch.addEventListener("keyup", (e) => {
@@ -94,8 +104,9 @@ inputSearch.addEventListener("keyup", (e) => {
     const currentUrl = window.location.href;
         const newUrl = currentUrl.replace('/Home.html', '/Searchcountry/SearchByCountry.html');
         window.location.assign(newUrl);
-    sessionStorage.setItem("value", e.target.value);
+    localStorage.setItem("value", e.target.value);
     e.target.value = "";
+    localStorage.setItem("switchMode", switchMode);
   }
 });
 
@@ -125,6 +136,7 @@ filter.addEventListener("change", (event) => {
   RenderFetchData(Url);
 });
 
-// window.addEventListener("load", filterRegion);
+// window.addEventListener("load", toggleFunction);
 ShowAllCountries();
+toggleFunction();
 filterRegion();

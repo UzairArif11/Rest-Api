@@ -3,17 +3,18 @@ const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
 const Body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
+const card = document.getElementById('card2')
 let dataTransfer = false;
-let switchMode = sessionStorage.getItem("switchMode");
+let switchMode = localStorage.getItem("switchMode");
 
 // Home page Show all country data
 const ShowAllCountries = () => {
-  var value = sessionStorage.getItem("value");
-  CardContainer.innerHTML = "";
+  var value = localStorage.getItem("value");
   const Url = `https://restcountries.com/v3.1/name/${value}`;
   backButton.style.display = "block";
 
   RenderFetchData(Url);
+  toggleFunction();
 };
 // Component to fetch country data
 const RenderFetchData = async (Url) => {
@@ -22,8 +23,6 @@ const RenderFetchData = async (Url) => {
     let data = await response.json();
 
     data.map((element) => {
-      const card = document.createElement("div");
-      card.classList.add("card2");
       card.innerHTML = `<div class="image2"><img src=${
         element.flags.png
       } alt="flag image"></div>
@@ -52,7 +51,7 @@ const RenderFetchData = async (Url) => {
     </div>
      </div>`;
 
-      CardContainer.appendChild(card);
+     toggleFunction();
     });
   } catch (error) {
     console.log(error);
@@ -60,21 +59,12 @@ const RenderFetchData = async (Url) => {
 };
 // Back botton and Toggle botton logic
 backButton.addEventListener("click", () => {
+  localStorage.setItem("switchMode", switchMode);
   history.back();
 });
 
 const toggleFunction = () => {
-  if (switchMode) {
-    Body.style.backgroundColor = "hsl(0, 0%, 98%)";
-    Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
-    Navbar.style.color = "hsl(0, 0%, 52%)";
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
-    );
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.color = "black")
-    );
-  } else {
+  if (switchMode === "false") {
     Body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
@@ -84,34 +74,25 @@ const toggleFunction = () => {
     Array.from(document.getElementsByClassName("card2")).forEach(
       (e) => (e.style.color = "white")
     );
+
+  } else {
+    Body.style.backgroundColor = "hsl(0, 0%, 98%)";
+    Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
+    Navbar.style.color = "hsl(0, 0%, 52%)";
+    Array.from(document.getElementsByClassName("card2")).forEach(
+      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
+    );
+    Array.from(document.getElementsByClassName("card2")).forEach(
+      (e) => (e.style.color = "black")
+    );
   }
-  console.log(switchMode);
+
 };
 toggleMode.addEventListener("click", () => {
-  if (switchMode == true) {
-    Body.style.backgroundColor = "#3B4959";
-    Navbar.style.backgroundColor = "#2D3743";
-    Navbar.style.color = "white";
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.backgroundColor = "#3B4959")
-    );
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.color = "white")
-    );
-    switchMode = false;
-  } else {
-    Body.style.backgroundColor = "hsl(0, 0%, 98%)";
-    Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
-    Navbar.style.color = "hsl(0, 0%, 52%)";
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
-    );
-    Array.from(document.getElementsByClassName("card2")).forEach(
-      (e) => (e.style.color = "black")
-    );
-    switchMode = true;
-  }
+ switchMode=switchMode==="true" ? "false" : "true";
+ toggleFunction();
 });
-// window.addEventListener("load", filterRegion);
+
+// window.addEventListener("load",toggleFunction);
 ShowAllCountries();
 toggleFunction();
