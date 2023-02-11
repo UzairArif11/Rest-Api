@@ -36,9 +36,9 @@ const RenderFetchData = async (Url) => {
      </div>`;
 
       card.addEventListener("click", () => {
-        window.location.assign(
-          "file:///C:/Users/HP/Desktop/Rest%20Api/Card.html"
-        );
+        const currentUrl = window.location.href;
+        const newUrl = currentUrl.replace('/Searchcountry/SearchByCountry.html', '/Card/Card.html');
+        window.location.assign(newUrl);
         sessionStorage.setItem("value", element.name.common);
       });
 
@@ -94,9 +94,10 @@ toggleMode.addEventListener("change", () => {
 
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
-    window.location.assign(
-      "file:///C:/Users/HP/Desktop/Rfile:///C:/Users/HP/Desktop/Rest%20Api/Searchcountry/SearchByCountry.htmlest%20Api/SearchByCountry.html"
-    );
+    const currentUrl = window.location.href;
+    const newUrl = currentUrl
+    window.location.assign(newUrl);
+   
     sessionStorage.setItem("value", e.target.value);
   }
 });

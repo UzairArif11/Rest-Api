@@ -33,9 +33,10 @@ const RenderFetchData = async (Url) => {
      </div>`;
       //OnClick Card Showing detail of country
       card.addEventListener("click", () => {
-        window.location.assign(
-          "file:///C:/Users/HP/Desktop/Rest%20Api/Card/Card.html"
-        );
+        const currentUrl = window.location.href;
+        const newUrl = currentUrl.replace('/Home.html', '/Card/Card.html');
+        window.location.assign(newUrl);
+        
         sessionStorage.setItem("value", element.name.common);
         sessionStorage.setItem("switchMode", switchMode);
       });
@@ -90,9 +91,9 @@ toggleMode.addEventListener("click", () => {
 
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
-    window.location.assign(
-      "file:///C:/Users/HP/Desktop/Rest%20Api/Searchcountry/SearchByCountry.html"
-    );
+    const currentUrl = window.location.href;
+        const newUrl = currentUrl.replace('/Home.html', '/Searchcountry/SearchByCountry.html');
+        window.location.assign(newUrl);
     sessionStorage.setItem("value", e.target.value);
     e.target.value = "";
   }
