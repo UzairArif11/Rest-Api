@@ -3,7 +3,9 @@ const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
 const body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
-const card = document.getElementById('card2')
+const card = document.getElementById('card2');
+const button = document.getElementsByClassName('button');
+
 let dataTransfer = false;
 let switchMode = localStorage.getItem("switchMode");
 
@@ -29,7 +31,7 @@ const RenderFetchData = async (Url) => {
       } alt="flag image"></div>
      
       <div class="des1">
-         <h2  style="font-weight: bold;"><b>${element.name.common}</b></h1>
+         <h2  "><b>${element.name.common}</b></h2>
          <p ><b> Native Name:</b> ${
            Object.values(element.name.nativeName)[0].common ||
            element.name.nativeName
@@ -48,7 +50,7 @@ const RenderFetchData = async (Url) => {
     
     <div class="des3">
         <p class='borderCountry'><b>Border Countries:</b>
-       <span> ${element.borders}</span>
+       ${element.borders? element.borders.map((e)=>`<button class=button>${e} </button> `).join(" "):`No Boder`}
         </p>
     </div>
      `;
@@ -72,6 +74,10 @@ const toggleFunction = () => {
     Navbar.style.color = "white";
     card.style.backgroundColor = "#3B4959";
     card.style.color = "white";
+   Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.backgroundColor = "#2D3743"));
+   Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "white"));
   
 
   } else {
@@ -80,6 +86,10 @@ const toggleFunction = () => {
     Navbar.style.color = "hsl(0, 0%, 52%)";
     card.style.backgroundColor = " hsl(0, 0%, 100%)";
     card.style.color = "black";
+   Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)"));
+   Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "black"));
   }
 
 };

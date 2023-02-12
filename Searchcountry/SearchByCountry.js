@@ -5,6 +5,8 @@ const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
 const body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
+const button = document.getElementsByClassName('button');
+
 let dataTransfer = false;
 let switchMode = localStorage.getItem("switchMode");
 
@@ -28,7 +30,7 @@ const RenderFetchData = async (Url) => {
       card.innerHTML = `<div class="image"><img src=${element.flags.png} alt="flag image"></div>
      <div class="description">
      <div  >
-         <h1>${element.name.common}</h1>
+         <h2>${element.name.common}</h2>
          <p>Population: ${element.population}</p>
          <p>Region: ${element.region}</p>
          <p>Capital: ${element.capital}</p>
@@ -59,6 +61,8 @@ backButton.addEventListener("click", () => {
   history.back();
 });
 
+//Toggle botton logic
+
 const toggleFunction = () => {
   if (switchMode =="false") {
     body.style.backgroundColor = "#3B4959";
@@ -66,14 +70,20 @@ const toggleFunction = () => {
     Navbar.style.color = "white";
     inputSearch.style.backgroundColor = "#2D3743";
     inputSearch.style.color = "white";
+    inputSearch.style.border = "white";
     filter.style.backgroundColor = "#2D3743";
     filter.style.color = "white";
+    filter.style.border = "white";
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.backgroundColor = "#2D3743")
     );
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.color = "white")
     );
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.backgroundColor = "#2D3743"));
+   Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "white"));
 
   } else {
     body.style.backgroundColor = "hsl(0, 0%, 98%)";
@@ -81,17 +91,23 @@ const toggleFunction = () => {
     Navbar.style.color = "hsl(0, 0%, 52%)";
     inputSearch.style.backgroundColor = " hsl(0, 0%, 100%)";
     inputSearch.style.color = "hsl(0, 0%, 52%)";
+    inputSearch.style.border = "hsl(0, 0%, 52%)";
     filter.style.backgroundColor = " hsl(0, 0%, 100%)";
     filter.style.color = "hsl(0, 0%, 52%)";
+    filter.style.border = "hsl(0, 0%, 52%)";
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
     );
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.color = "black")
     );
-
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)"));
+   Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "black"));
   }
- 
+  localStorage.setItem("switchMode", switchMode);
+  
 };
 
 toggleMode.addEventListener("click", () => {

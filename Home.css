@@ -48,6 +48,7 @@ font-weight: 300, 600, 800;
     width: 30%;
 
 }
+
         /* Card section */
         #CardsContainer{
             display: grid;
@@ -74,6 +75,7 @@ font-weight: 300, 600, 800;
         
          .card .image{
         object-fit: cover;
+        box-shadow: 0 0.25rem 0.5rem rgb(98 95 95);
             
         }
         .card .image img{
@@ -88,12 +90,19 @@ font-weight: 300, 600, 800;
         }
        
         #backButton{
-            position: absolute;
-            top: 9.3rem;
-            left: 0.5rem;
-            height: 23px;
-            width: 33px;
             display: none;
+            position: absolute;
+            top: 10rem;
+            left: 0.5rem;
+        }
+        .button{
+         
+          height: fit-content;
+          width: fit-content;
+          border: 0;
+          cursor: pointer;
+          transform: translateY(-0.25rem);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
         }
         
 
@@ -182,7 +191,7 @@ font-weight: 300, 600, 800;
   
 
                
-        @media screen and (max-width: 828px) {
+        /* @media screen and (max-width: 828px) {
             #CardsContainer{
                width: 80%;
                 grid-template-columns:1fr 1fr;
@@ -190,7 +199,7 @@ font-weight: 300, 600, 800;
     
             }
            
-            }
+            } */
         @media screen and (max-width: 448px) {
             #CardsContainer{
                width: 80%;

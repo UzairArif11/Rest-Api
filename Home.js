@@ -5,6 +5,7 @@ const filter = document.getElementById("filter");
 const toggleMode = document.getElementById("toggle-mode");
 const body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
+const button = document.getElementsByClassName('button');
 
 let switchMode = localStorage.getItem("switchMode"); ;
 
@@ -25,7 +26,7 @@ const RenderFetchData = async (Url) => {
       card.innerHTML = `<div class="image"><img src=${element.flags.png} alt="flag image"></div>
      <div class="description">
   
-         <h3 ><b>${element.name.common}</b></h1>
+         <h2 >${element.name.common}</h2>
          <p><b>Population</b>: ${element.population}</p>
          <p><b>Region:</b> ${element.region}</p>
          <p><b>Capital:</b> ${element.capital}</p>
@@ -71,6 +72,10 @@ const toggleFunction = () => {
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.color = "white")
     );
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.backgroundColor = "#2D3743"));
+   Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "white"));
 
   } else {
     body.style.backgroundColor = "hsl(0, 0%, 98%)";
@@ -88,7 +93,10 @@ const toggleFunction = () => {
     Array.from(document.getElementsByClassName("card")).forEach(
       (e) => (e.style.color = "black")
     );
-
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)"));
+   Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "black"));
   }
   localStorage.setItem("switchMode", switchMode);
   
