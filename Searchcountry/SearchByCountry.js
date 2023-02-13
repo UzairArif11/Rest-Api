@@ -1,15 +1,10 @@
 const CardContainer = document.getElementById("CardsContainer");
 const inputSearch = document.getElementById("myInput");
-const filter = document.getElementById("filter");
 const backButton = document.getElementById("backButton");
+const filter = document.getElementById("filter");
 const toggleMode = document.getElementById("toggle-mode");
-const body = document.querySelector("body");
-const Navbar = document.getElementById("Navbar");
-const button = document.getElementsByClassName("button");
 
-let dataTransfer = false;
 let switchMode = localStorage.getItem("switchMode");
-
 // Home page Show all country data
 const ShowAllCountries = () => {
   var value = localStorage.getItem("value");
@@ -40,18 +35,13 @@ const RenderFetchData = async (Url) => {
      </div>`;
 
       card.addEventListener("click", () => {
-        const currentUrl = window.location.href;
-        const newUrl = currentUrl.replace(
-          "/Searchcountry/SearchByCountry.html",
-          "/Card/Card.html"
-        );
+        window.location.assign("../Card/Card.html");
         window.location.assign(newUrl);
         localStorage.setItem("value", element.name.common);
         localStorage.setItem("switchMode", switchMode);
       });
 
       CardContainer.appendChild(card);
-      toggleFunction();
 
       //OnClick Card Showing detail of country
     });
@@ -68,70 +58,43 @@ backButton.addEventListener("click", () => {
 
 //Toggle botton logic
 
-const toggleFunction = () => {
-  if (switchMode == "false") {
-    toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
-    body.style.backgroundColor = "#3B4959";
-    Navbar.style.backgroundColor = "#2D3743";
-    Navbar.style.color = "white";
-    inputSearch.style.backgroundColor = "#2D3743";
-    inputSearch.style.color = "white";
-    inputSearch.style.border = "white";
-    filter.style.backgroundColor = "#2D3743";
-    filter.style.color = "white";
-    filter.style.border = "white";
-    Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.backgroundColor = "#2D3743")
-    );
-    Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.color = "white")
-    );
-    Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.backgroundColor = "#2D3743")
-    );
-    Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.color = "white")
-    );
-  } else {
-    toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
-    body.style.backgroundColor = "hsl(0, 0%, 98%)";
-    Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
-    Navbar.style.color = "hsl(0, 0%, 52%)";
-    inputSearch.style.backgroundColor = " hsl(0, 0%, 100%)";
-    inputSearch.style.color = "hsl(0, 0%, 52%)";
-    inputSearch.style.border = "hsl(0, 0%, 52%)";
-    filter.style.backgroundColor = " hsl(0, 0%, 100%)";
-    filter.style.color = "hsl(0, 0%, 52%)";
-    filter.style.border = "hsl(0, 0%, 52%)";
-    Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
-    );
-    Array.from(document.getElementsByClassName("card")).forEach(
-      (e) => (e.style.color = "black")
-    );
-    Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
-    );
-    Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.color = "black")
-    );
-  }
-  localStorage.setItem("switchMode", switchMode);
-};
-
 toggleMode.addEventListener("click", () => {
-  switchMode = switchMode === "true" ? "false" : "true";
-  toggleFunction();
+  let currentTheme = document.documentElement.getAttribute("data-theme");
+  let targetTheme = "";
+  console.log(currentTheme);
+  if (currentTheme === "light") {
+    targetTheme = "dark";
+    toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
+  } else if (currentTheme === "dark") {
+    targetTheme = "light";
+    toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
+  }
+
+  document.documentElement.setAttribute("data-theme", targetTheme);
+  localStorage.setItem("theme", targetTheme);
+});
+
+window.addEventListener("load", () => {
+  let theme = localStorage.getItem("theme");
+  if (theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    if (theme === "light") {
+      toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
+    } else {
+      toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
+    }
+  }
 });
 // Search by country name
 
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
-    const currentUrl = window.location.href;
-    const newUrl = currentUrl;
-    window.location.assign(newUrl);
-
-    localStorage.setItem("value", e.target.value);
+    if (e.target.value) {
+      window.location.assign("./Searchcountry/SearchByCountry.html");
+      localStorage.setItem("value", e.target.value);
+      e.target.value = "";
+      localStorage.setItem("switchMode", switchMode);
+    }
   }
 });
 
@@ -161,4 +124,3 @@ filter.addEventListener("click", (event) => {
 // window.addEventListener("load", filterRegion);
 ShowAllCountries();
 filterRegion();
-toggleFunction();

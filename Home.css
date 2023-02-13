@@ -1,21 +1,40 @@
+:root {
+  --veryLightGray: hsl(0, 0%, 98%);
+}
 body{
-    background-color: #3B4959;
-    font-family:  sans-serif;
+  font-family:  sans-serif;
+  background-color: var(--headerColor);
+  color: var(--textColor);
 }
     /* styles for the light/dark mode toggle */
     #toggle-mode{
         cursor:pointer;
     }
+  
+  
+  html[data-theme='dark']{
+      --bgColor :  #2D3743;
+      --headerColor: #3B4959;
+      --textColor: white;
+    
+  }
+  html[data-theme='light']{
+    --bgColor : hsl(0, 0%, 100%);
+    --headerColor: hsl(0, 0%, 98%);
+    --textColor: black;
+    
+
+}
 
 /* NavBar section */
 #Navbar{
+  background-color: var(--bgColor);
+  color: var(--textColor);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1;
-    background-color:#2D3743;
-    color: white;
     display: flex;
     justify-content:space-between;
     align-items: center;   
@@ -24,6 +43,7 @@ body{
 
 /* Search and Filter section */
 .Search{
+
     padding: 23px;
     margin-top: 90px;
     display: flex;
@@ -31,12 +51,12 @@ body{
 }
 
 .Search input,.Search #filter{
-    background-color: #2D3743;
-    color: white;
+  background-color: var(--bgColor);
+  color: var(--textColor);
     padding: 10px;
     font-size: 16px;
     border-radius: 5px 0 0 5px;
-    border: 1px solid #2D3743;
+    border: 1px solid var(--bgColor);
     width: 50%;
     margin-right: -1px;
     box-sizing: border-box;
@@ -57,19 +77,19 @@ body{
 
         }
         .card{  
-            background-color: #2D3743;
-            color: white;
+          background-color: var(--bgColor);
+          color: var(--textColor);
             margin: 1rem;
           border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 0.25rem 0.5rem rgb(98 95 95);
+            box-shadow: 0 0.1rem 0.825rem rgb(98 95 95);
             transition: all 0.3s;
 
         } 
         .card:hover {
             cursor: pointer;
             transform: translateY(-0.25rem);
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.1rem 0.825rem rgb(98 95 95);
           }
         
          .card .image{
@@ -96,14 +116,15 @@ body{
             left: 0.5rem;
         }
         .button{
-         
+          background-color: var(--headerColor);
+         color: var(--textColor);
           height: fit-content;
           width: fit-content;
           border: 0;
           padding: 6px;
           cursor: pointer;
           transform: translateY(-0.25rem);
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.1rem 0.825rem rgb(98 95 95);
         }
         
       .show {
@@ -111,6 +132,7 @@ body{
       }
 
       #card2 .image2 {
+        box-shadow: 0 0.1rem 0.825rem rgb(98 95 95);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -151,7 +173,9 @@ body{
             "image2 des3 des3";
         grid-gap: 1rem;
         text-align: center;
-        background-color: white;
+        background-color: var(--bgColor);
+          color: var(--textColor);
+          box-shadow: 0 0.1rem 0.825rem rgb(98 95 95);
         margin: 1%;
        
     }
