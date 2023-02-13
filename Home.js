@@ -5,9 +5,9 @@ const filter = document.getElementById("filter");
 const toggleMode = document.getElementById("toggle-mode");
 const body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
-const button = document.getElementsByClassName('button');
+const button = document.getElementsByClassName("button");
 
-let switchMode = localStorage.getItem("switchMode"); ;
+let switchMode = localStorage.getItem("switchMode");
 
 // Home page Show all country data
 const ShowAllCountries = () => {
@@ -27,7 +27,7 @@ const RenderFetchData = async (Url) => {
      <div class="description">
   
          <h2 >${element.name.common}</h2>
-         <p><b>Population</b>: ${element.population}</p>
+         <p><span>Population</span>: ${element.population}</p>
          <p><b>Region:</b> ${element.region}</p>
          <p><b>Capital:</b> ${element.capital}</p>
     
@@ -35,9 +35,9 @@ const RenderFetchData = async (Url) => {
       //OnClick Card Showing detail of country
       card.addEventListener("click", () => {
         const currentUrl = window.location.href;
-        const newUrl = currentUrl.replace('/Home.html', '/Card/Card.html');
+        const newUrl = currentUrl.replace("/Home.html", "/Card/Card.html");
         window.location.assign(newUrl);
-        
+
         localStorage.setItem("value", element.name.common);
         localStorage.setItem("switchMode", switchMode);
       });
@@ -56,7 +56,8 @@ backButton.addEventListener("click", () => {
 //Toggle botton logic
 
 const toggleFunction = () => {
-  if (switchMode =="false") {
+  if (switchMode == "false") {
+    toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
     body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
@@ -73,11 +74,13 @@ const toggleFunction = () => {
       (e) => (e.style.color = "white")
     );
     Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.backgroundColor = "#2D3743"));
-   Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.color = "white"));
-
+      (e) => (e.style.backgroundColor = "#2D3743")
+    );
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "white")
+    );
   } else {
+    toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
     body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
     Navbar.style.color = "hsl(0, 0%, 52%)";
@@ -94,28 +97,30 @@ const toggleFunction = () => {
       (e) => (e.style.color = "black")
     );
     Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)"));
-   Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.color = "black"));
+      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
+    );
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "black")
+    );
   }
   localStorage.setItem("switchMode", switchMode);
-  
 };
 
 toggleMode.addEventListener("click", () => {
- switchMode=switchMode==="true" ? "false" : "true";
- toggleFunction();
+  switchMode = switchMode === "true" ? "false" : "true";
+  toggleFunction();
 });
-
-
 
 // Search by country name
 
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     const currentUrl = window.location.href;
-        const newUrl = currentUrl.replace('/Home.html', '/Searchcountry/SearchByCountry.html');
-        window.location.assign(newUrl);
+    const newUrl = currentUrl.replace(
+      "/Home.html",
+      "/Searchcountry/SearchByCountry.html"
+    );
+    window.location.assign(newUrl);
     localStorage.setItem("value", e.target.value);
     e.target.value = "";
     localStorage.setItem("switchMode", switchMode);

@@ -3,8 +3,8 @@ const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
 const body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
-const card = document.getElementById('card2');
-const button = document.getElementsByClassName('button');
+const card = document.getElementById("card2");
+const button = document.getElementsByClassName("button");
 
 let dataTransfer = false;
 let switchMode = localStorage.getItem("switchMode");
@@ -25,8 +25,7 @@ const RenderFetchData = async (Url) => {
     let data = await response.json();
 
     data.map((element) => {
-      card.innerHTML = 
-      `<div class="image2"><img src=${
+      card.innerHTML = `<div class="image2"><img src=${
         element.flags.png
       } alt="flag image"></div>
      
@@ -50,12 +49,18 @@ const RenderFetchData = async (Url) => {
     
     <div class="des3">
         <p class='borderCountry'><b>Border Countries:</b>
-       ${element.borders? element.borders.map((e)=>`<button class=button>${e} </button> `).join(" "):`No Boder`}
+       ${
+         element.borders
+           ? element.borders
+               .map((e) => `<button class=button>${e} </button> `)
+               .join(" ")
+           : `No Boder`
+       }
         </p>
     </div>
      `;
 
-     toggleFunction();
+      toggleFunction();
     });
   } catch (error) {
     console.log(error);
@@ -69,33 +74,37 @@ backButton.addEventListener("click", () => {
 
 const toggleFunction = () => {
   if (switchMode === "false") {
+    toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
     body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
     card.style.backgroundColor = "#3B4959";
     card.style.color = "white";
-   Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.backgroundColor = "#2D3743"));
-   Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.color = "white"));
-  
-
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.backgroundColor = "#2D3743")
+    );
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "white")
+    );
   } else {
+    toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
     body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
     Navbar.style.color = "hsl(0, 0%, 52%)";
     card.style.backgroundColor = " hsl(0, 0%, 100%)";
     card.style.color = "black";
-   Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)"));
-   Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.color = "black"));
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
+    );
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "black")
+    );
   }
-
 };
 toggleMode.addEventListener("click", () => {
- switchMode=switchMode==="true" ? "false" : "true";
- toggleFunction();
+  switchMode = switchMode === "true" ? "false" : "true";
+  toggleFunction();
+  localStorage.setItem("switchMode", switchMode);
 });
 
 // window.addEventListener("load",toggleFunction);

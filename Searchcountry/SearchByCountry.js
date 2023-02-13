@@ -5,7 +5,7 @@ const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
 const body = document.querySelector("body");
 const Navbar = document.getElementById("Navbar");
-const button = document.getElementsByClassName('button');
+const button = document.getElementsByClassName("button");
 
 let dataTransfer = false;
 let switchMode = localStorage.getItem("switchMode");
@@ -39,7 +39,10 @@ const RenderFetchData = async (Url) => {
 
       card.addEventListener("click", () => {
         const currentUrl = window.location.href;
-        const newUrl = currentUrl.replace('/Searchcountry/SearchByCountry.html', '/Card/Card.html');
+        const newUrl = currentUrl.replace(
+          "/Searchcountry/SearchByCountry.html",
+          "/Card/Card.html"
+        );
         window.location.assign(newUrl);
         localStorage.setItem("value", element.name.common);
         localStorage.setItem("switchMode", switchMode);
@@ -64,7 +67,8 @@ backButton.addEventListener("click", () => {
 //Toggle botton logic
 
 const toggleFunction = () => {
-  if (switchMode =="false") {
+  if (switchMode == "false") {
+    toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
     body.style.backgroundColor = "#3B4959";
     Navbar.style.backgroundColor = "#2D3743";
     Navbar.style.color = "white";
@@ -81,11 +85,13 @@ const toggleFunction = () => {
       (e) => (e.style.color = "white")
     );
     Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.backgroundColor = "#2D3743"));
-   Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.color = "white"));
-
+      (e) => (e.style.backgroundColor = "#2D3743")
+    );
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "white")
+    );
   } else {
+    toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
     body.style.backgroundColor = "hsl(0, 0%, 98%)";
     Navbar.style.backgroundColor = " hsl(0, 0%, 100%)";
     Navbar.style.color = "hsl(0, 0%, 52%)";
@@ -102,26 +108,27 @@ const toggleFunction = () => {
       (e) => (e.style.color = "black")
     );
     Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)"));
-   Array.from(document.getElementsByClassName("button")).forEach(
-      (e) => (e.style.color = "black"));
+      (e) => (e.style.backgroundColor = " hsl(0, 0%, 100%)")
+    );
+    Array.from(document.getElementsByClassName("button")).forEach(
+      (e) => (e.style.color = "black")
+    );
   }
   localStorage.setItem("switchMode", switchMode);
-  
 };
 
 toggleMode.addEventListener("click", () => {
- switchMode=switchMode==="true" ? "false" : "true";
- toggleFunction();
+  switchMode = switchMode === "true" ? "false" : "true";
+  toggleFunction();
 });
 // Search by country name
 
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     const currentUrl = window.location.href;
-    const newUrl = currentUrl
+    const newUrl = currentUrl;
     window.location.assign(newUrl);
-   
+
     localStorage.setItem("value", e.target.value);
   }
 });
