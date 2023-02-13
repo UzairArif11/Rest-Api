@@ -191,7 +191,7 @@ font-weight: 300, 600, 800;
   
 
                
-        /* @media screen and (max-width: 828px) {
+        @media screen and (max-width: 828px) {
             #CardsContainer{
                width: 80%;
                 grid-template-columns:1fr 1fr;
@@ -199,7 +199,7 @@ font-weight: 300, 600, 800;
     
             }
            
-            } */
+            }
         @media screen and (max-width: 448px) {
             #CardsContainer{
                width: 80%;
