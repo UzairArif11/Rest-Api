@@ -30,8 +30,8 @@ const RenderFetchData = async (Url) => {
       } alt="flag image"></div>
      
       <div class="des1">
-         <h2  "><b>${element.name.common}</b></h2>
-         <p ><b> Native Name:</b> ${
+         <h2>${element.name.common}</h2>
+         <p><b> Native Name:</b> ${
            Object.values(element.name.nativeName)[0].common ||
            element.name.nativeName
          }</p>

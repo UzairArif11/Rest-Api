@@ -31,9 +31,9 @@ const RenderFetchData = async (Url) => {
      <div class="description">
      <div  >
          <h2>${element.name.common}</h2>
-         <p>Population: ${element.population}</p>
-         <p>Region: ${element.region}</p>
-         <p>Capital: ${element.capital}</p>
+         <p><b>Population: </b> ${element.population}</p>
+         <p><b>Region: </b> ${element.region}</p>
+         <p><b>Capital: </b> ${element.capital}</p>
     </div>
      </div>`;
 

@@ -1,8 +1,6 @@
 body{
     background-color: #3B4959;
     font-family:  sans-serif;
-
-    
 }
     /* styles for the light/dark mode toggle */
     #toggle-mode{
@@ -23,8 +21,6 @@ body{
     align-items: center;   
     padding: 0px 14px 0px 14px;
 }
-#Navbar{}
-
 
 /* Search and Filter section */
 .Search{
@@ -32,8 +28,8 @@ body{
     margin-top: 90px;
     display: flex;
     justify-content:space-between;
-    
 }
+
 .Search input,.Search #filter{
     background-color: #2D3743;
     color: white;
@@ -46,6 +42,7 @@ body{
     box-sizing: border-box;
     outline: none;
 }
+
 .Search #filter{
     width: 30%;
     outline: none;
@@ -78,7 +75,7 @@ body{
          .card .image{
           width: 100%;
     height: 10rem;
-        box-shadow: 0 0.25rem 0.5rem rgb(98 95 95);
+        box-shadow: 0 0.1rem 0.825rem rgb(98 95 95);
             
         }
         .card .image img{
@@ -103,22 +100,16 @@ body{
           height: fit-content;
           width: fit-content;
           border: 0;
+          padding: 6px;
           cursor: pointer;
           transform: translateY(-0.25rem);
           box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
         }
         
-
-        
       .show {
         display: block;
       }
-      .bold-h2 {
-        font-weight: 900, 600, 800;
-      
-      }
 
-     
       #card2 .image2 {
         display: flex;
         justify-content: center;
@@ -168,7 +159,6 @@ body{
         width: 100%;
     height: 100%;
     object-fit: cover;
-  
         box-shadow: 0 0.25rem 0.5rem rgb(98 95 95);
         transition: all 0.3s;
 }
@@ -190,11 +180,6 @@ body{
         height: 100%;
         object-fit: cover;
       }
-      
-      span{
-        font-weight: bold;
-    }
-
                
         @media screen and (max-width: 828px) {
             #CardsContainer{
@@ -202,16 +187,12 @@ body{
                 grid-template-columns:1fr 1fr;
                 margin: auto;
     
-            }
-           
-            }
+            }}
         @media screen and (max-width: 448px) {
             #CardsContainer{
                width: 80%;
                 grid-template-columns:1fr ;
                 margin: auto;
     
-            }
-           
-            }
+            }}
           
