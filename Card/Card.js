@@ -35,7 +35,7 @@ const RenderFetchData = async (Url) => {
            Object.values(element.name.nativeName)[0].common ||
            element.name.nativeName
          }</p>
-         <p><b>Population: </b>${element.population}</p>
+         <p><b>Population: </b>${element.population.toLocaleString()}</p>
          <p><b>Region: </b>${element.region}</p>
          <p ><b>Sub Region:</b> ${element.subregion}</p>
          <p><b>Capital: </b>${element.capital}</p>
@@ -54,7 +54,7 @@ const RenderFetchData = async (Url) => {
            ? element.borders
                .map((e) => `<button class=button>${e} </button> `)
                .join(" ")
-           : `No Boder`
+           : `No Border`
        }
         </p>
     </div>

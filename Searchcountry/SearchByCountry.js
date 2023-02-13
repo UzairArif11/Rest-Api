@@ -27,11 +27,13 @@ const RenderFetchData = async (Url) => {
     data.map((element) => {
       const card = document.createElement("div");
       card.classList.add("card");
-      card.innerHTML = `<div class="image"><img src=${element.flags.png} alt="flag image"></div>
+      card.innerHTML = `<div class="image"><img src=${
+        element.flags.png
+      } alt="flag image"></div>
      <div class="description">
      <div  >
          <h2>${element.name.common}</h2>
-         <p><b>Population: </b> ${element.population}</p>
+         <p><b>Population: </b> ${element.population.toLocaleString()}</p>
          <p><b>Region: </b> ${element.region}</p>
          <p><b>Capital: </b> ${element.capital}</p>
     </div>
