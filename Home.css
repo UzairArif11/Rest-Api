@@ -11,7 +11,7 @@ html[data-theme='dark']{
     --bgColor :  #2D3743;
     --headerColor: #3B4959;
     --textColor: white;
-    --shadowColor: 0 0.1rem 0.825rem rgb(13, 12, 12);
+    --shadowColor: 0.1rem 0.1rem 0.3rem rgb(34, 33, 33);
 
 }
 html[data-theme='light']{
@@ -124,8 +124,8 @@ body{
         #backButton{
             display: none;
             position: absolute;
-            top: 6rem;
-            left: 0.9rem;
+            top: 5rem;
+            left: 1rem;
             border-radius: 4px;
         }
         .button{
@@ -185,6 +185,7 @@ body{
             "image2 des3 des3";
         grid-gap: 1rem;
         text-align: center;
+        justify-content: center;
         background-color: var(--headerColor);
           color: var(--textColor);
         
@@ -198,11 +199,12 @@ body{
         box-shadow: 0 0.25rem 0.5rem rgb(98 95 95);
         transition: all 0.3s;
 }
+
       
       @media screen and (max-width: 828px) {
         #CardsContainer2{
           width: 90%;
-          margin: auto;
+          /* margin: auto; */
         }
         #card2 {
             grid-template-columns: auto;
