@@ -2,7 +2,7 @@ const CardContainer = document.getElementById("CardsContainer");
 const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
 const card = document.getElementById("card2");
-let arr=[];
+
 let switchMode = localStorage.getItem("switchMode");
 
 // Home page Show all country data
@@ -19,11 +19,35 @@ const RenderFetchData = async (Url) => {
     let response = await fetch(Url);
     let data = await response.json();
 
+    let borderingCountries = [];
+    await Promise.all(
+      data.map(async (element) => {
+        let arr = [];
+        try {
+          await Promise.all(
+            element.borders.map(async (e) => {
+              const response = await fetch(
+                `https://restcountries.com/v3.1/alpha/${e}`
+              );
+              const data = await response.json();
+              arr.push(data[0].name.common);
+            })
+          );
+
+          borderingCountries = arr;
+        } catch (err) {
+          console.log(err);
+          return "Error fetching bordering countries";
+        }
+      })
+    );
+
     data.map((element) => {
+      let Mode = borderingCountries;
       card.innerHTML = `<div class="image2"><img src=${
         element.flags.png
       } alt="flag image"></div>
-     
+
       <div class="des1">
          <h2>${element.name.official}</h2>
          <p><b> Native Name:</b> ${
@@ -41,42 +65,24 @@ const RenderFetchData = async (Url) => {
          <p><b>Currencies:</b> ${Object.values(element.currencies)[0].name}</p>
          <p><b>Languages: </b>${Object.values(element.languages)[0]}</p>
     </div>
-<div class="des3">
- 
-  ${(fr=async () => {
-    const arr = [];
-    await Promise.all(
-      element.borders.map(async (e) => {
-        try {
-          const response = await fetch(`https://restcountries.com/v3.1/alpha/${e}`);
-          const data = await response.json();
-          arr.push(data[0].name.common);
-        } catch (err) {
-          console.log(err);
-        }
-      })
-    );
-    return arr.join(' ');
-  })()
-  .then((borderCountries) => borderCountries)
-  .catch((err) => console.log(err))}
-  <p class='borderCountry'><b>Border Countries:</b>
-  ${
-    element.borders && element.borders.length
-      ? 
-     fr().f : "No Border"
-  }
-  </p>
-</div>
 
-  
-  
-     `;
+    <div class="des3">
+      <p class='borderCountry'><b>Border Countries:</b>
+        ${
+          element.borders && element.borders.length
+            ? Mode.map((name) => {
+                return `<button class="button">${name}</button>`;
+              }).join("")
+            : "No Border"
+        }
+      </p>
+    </div>`;
     });
   } catch (error) {
     console.log(error);
   }
 };
+
 // Back botton and Toggle botton logic
 backButton.addEventListener("click", () => {
   localStorage.setItem("switchMode", switchMode);
@@ -89,13 +95,13 @@ toggleMode.addEventListener("click", () => {
   let currentTheme = document.documentElement.getAttribute("data-theme");
   let targetTheme = "";
   console.log(currentTheme);
-  
+
   if (currentTheme === "light") {
     targetTheme = "dark";
-    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`; 
+    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
+    toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -109,9 +115,9 @@ window.addEventListener("load", () => {
     if (theme === "light") {
       toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
     } else {
-       toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
+      toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
-  }else{
+  } else {
     document.documentElement.setAttribute("data-theme", "light");
     toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
