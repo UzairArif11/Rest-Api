@@ -1,30 +1,32 @@
 :root {
   --veryLightGray: hsl(0, 0%, 98%);
 }
+    /* styles for the light/dark mode toggle */
+    #toggle-mode{
+      cursor:pointer;
+  }
+
+
+html[data-theme='dark']{
+    --bgColor :  #2D3743;
+    --headerColor: #3B4959;
+    --textColor: white;
+    --shadowColor: 0 0.1rem 0.825rem rgb(13, 12, 12);
+
+}
+html[data-theme='light']{
+  --bgColor : hsl(0, 0%, 100%);
+  --headerColor: hsl(0, 0%, 98%);
+  --textColor: black;
+  --shadowColor: 0 0.1rem 0.825rem rgb(98 95 95);
+
+}
 body{
   font-family:  sans-serif;
   background-color: var(--headerColor);
   color: var(--textColor);
 }
-    /* styles for the light/dark mode toggle */
-    #toggle-mode{
-        cursor:pointer;
-    }
-  
-  
-  html[data-theme='dark']{
-      --bgColor :  #2D3743;
-      --headerColor: #3B4959;
-      --textColor: white;
-    
-  }
-  html[data-theme='light']{
-    --bgColor : hsl(0, 0%, 100%);
-    --headerColor: hsl(0, 0%, 98%);
-    --textColor: black;
-    
 
-}
 
 /* NavBar section */
 #Navbar{
@@ -50,32 +52,42 @@ body{
     justify-content:space-between;
 }
 
-.Search input,.Search #filter{
+.Search input,.Search #filter {
   background-color: var(--bgColor);
   color: var(--textColor);
     padding: 10px;
     font-size: 16px;
     border-radius: 5px 0 0 5px;
     border: 1px solid var(--bgColor);
-    width: 50%;
+    width: 400px;
     margin-right: -1px;
     box-sizing: border-box;
     outline: none;
 }
 
 .Search #filter{
-    width: 30%;
+    width: 200px;
     outline: none;
-}
+}         
+        .row{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .column{
+          width: 90%;
+         
+          
+        }
 
         /* Card section */
-        #CardsContainer{
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr;
-             justify-content: space-around;
-
-        }
+        #CardsContainer {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(200px, 300px));     
+         grid-template-rows: 1fr;
+          justify-content:space-around;
+      }
         .card{  
           background-color: var(--bgColor);
           color: var(--textColor);
@@ -101,7 +113,7 @@ body{
         .card .image img{
             width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit:fill;
             
         } 
         .card .description{
@@ -112,19 +124,19 @@ body{
         #backButton{
             display: none;
             position: absolute;
-            top: 10rem;
-            left: 0.5rem;
+            top: 6rem;
+            left: 0.9rem;
+            border-radius: 4px;
         }
         .button{
           background-color: var(--headerColor);
          color: var(--textColor);
-          height: fit-content;
-          width: fit-content;
+         
           border: 0;
-          padding: 6px;
+          padding:7px 16px;
           cursor: pointer;
           transform: translateY(-0.25rem);
-          box-shadow: 0 0.1rem 0.825rem rgb(98 95 95);
+          box-shadow:var(--shadowColor)
         }
         
       .show {
@@ -211,12 +223,29 @@ body{
                 grid-template-columns:1fr 1fr;
                 margin: auto;
     
-            }}
-        @media screen and (max-width: 448px) {
+            }
+            .Search input,.Search #filter{
+              width: 40%;
+            }
+          }
+        @media screen and (max-width: 488px) {
             #CardsContainer{
                width: 80%;
                 grid-template-columns:1fr ;
                 margin: auto;
     
-            }}
+            }
+            .Search{
+              display: flex;
+             flex-direction: column;
+          }
+          
+            .Search input{
+              width: 90%;
+            margin-bottom: 23px;
+            }
+              .Search #filter{
+              width: 60%;
+            }
+          }
           

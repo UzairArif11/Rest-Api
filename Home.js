@@ -25,8 +25,8 @@ const RenderFetchData = async (Url) => {
       } alt="flag image"></div>
      <div class="description">
   
-         <h2 >${element.name.common}</h2>
-         <p><span>Population</span>: ${element.population.toLocaleString()}</p>
+         <h2 >${element.name.official}</h2>
+         <p><b>Population</b>: ${element.population.toLocaleString()}</p>
          <p><b>Region:</b> ${element.region}</p>
          <p><b>Capital:</b> ${element.capital}</p>
     
@@ -55,12 +55,13 @@ toggleMode.addEventListener("click", () => {
   let currentTheme = document.documentElement.getAttribute("data-theme");
   let targetTheme = "";
   console.log(currentTheme);
+  
   if (currentTheme === "light") {
     targetTheme = "dark";
-    toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
+    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`; 
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-    toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
+toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -72,10 +73,13 @@ window.addEventListener("load", () => {
   if (theme) {
     document.documentElement.setAttribute("data-theme", theme);
     if (theme === "light") {
-      toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
+      toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
     } else {
-      toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
+       toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
+  }else{
+    document.documentElement.setAttribute("data-theme", "light");
+    toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
 });
 
@@ -101,6 +105,7 @@ const filterRegion = async () => {
   let data = await response.json();
 
   let regions = [...new Set(data.map(({ region }) => region))];
+  regions.sort((a, b) => a.localeCompare(b));
 
   regions.forEach((region) => {
     const option = document.createElement("option");

@@ -27,7 +27,7 @@ const RenderFetchData = async (Url) => {
       } alt="flag image"></div>
      <div class="description">
      <div  >
-         <h2>${element.name.common}</h2>
+         <h2>${element.name.official}</h2>
          <p><b>Population: </b> ${element.population.toLocaleString()}</p>
          <p><b>Region: </b> ${element.region}</p>
          <p><b>Capital: </b> ${element.capital}</p>
@@ -62,12 +62,13 @@ toggleMode.addEventListener("click", () => {
   let currentTheme = document.documentElement.getAttribute("data-theme");
   let targetTheme = "";
   console.log(currentTheme);
+  
   if (currentTheme === "light") {
     targetTheme = "dark";
-    toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
+    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`; 
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-    toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
+toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -79,10 +80,13 @@ window.addEventListener("load", () => {
   if (theme) {
     document.documentElement.setAttribute("data-theme", theme);
     if (theme === "light") {
-      toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
+      toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
     } else {
-      toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
+       toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
+  }else{
+    document.documentElement.setAttribute("data-theme", "light");
+    toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
 });
 // Search by country name
@@ -90,10 +94,11 @@ window.addEventListener("load", () => {
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     if (e.target.value) {
-      window.location.assign("./Searchcountry/SearchByCountry.html");
+      location.reload();
       localStorage.setItem("value", e.target.value);
       e.target.value = "";
       localStorage.setItem("switchMode", switchMode);
+
     }
   }
 });
@@ -105,15 +110,20 @@ const filterRegion = async () => {
 
   let response = await fetch(Url);
   let data = await response.json();
-  data.map((element) => {
+
+  let regions = [...new Set(data.map(({ region }) => region))];
+  regions.sort((a, b) => a.localeCompare(b));
+
+  regions.forEach((region) => {
     const option = document.createElement("option");
-    option.innerText = element.region;
+    option.innerText = region;
     filter.appendChild(option);
   });
 };
 
-filter.addEventListener("click", (event) => {
+filter.addEventListener("change", (event) => {
   if (event.target.value === "") return;
+  if (event.target.value === "Filter by Region") return;
 
   CardContainer.innerHTML = "";
   const Url = `https://restcountries.com/v3.1/region/${event.target.value}`;

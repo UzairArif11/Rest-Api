@@ -2,7 +2,7 @@ const CardContainer = document.getElementById("CardsContainer");
 const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
 const card = document.getElementById("card2");
-
+let arr=[];
 let switchMode = localStorage.getItem("switchMode");
 
 // Home page Show all country data
@@ -25,9 +25,9 @@ const RenderFetchData = async (Url) => {
       } alt="flag image"></div>
      
       <div class="des1">
-         <h2>${element.name.common}</h2>
+         <h2>${element.name.official}</h2>
          <p><b> Native Name:</b> ${
-           Object.values(element.name.nativeName)[0].common ||
+           Object.values(element.name.nativeName)[0].official ||
            element.name.nativeName
          }</p>
          <p><b>Population: </b>${element.population.toLocaleString()}</p>
@@ -41,18 +41,36 @@ const RenderFetchData = async (Url) => {
          <p><b>Currencies:</b> ${Object.values(element.currencies)[0].name}</p>
          <p><b>Languages: </b>${Object.values(element.languages)[0]}</p>
     </div>
-    
-    <div class="des3">
-        <p class='borderCountry'><b>Border Countries:</b>
-       ${
-         element.borders
-           ? element.borders
-               .map((e) => `<button class=button>${e} </button> `)
-               .join(" ")
-           : `No Border`
-       }
-        </p>
-    </div>
+<div class="des3">
+ 
+  ${(fr=async () => {
+    const arr = [];
+    await Promise.all(
+      element.borders.map(async (e) => {
+        try {
+          const response = await fetch(`https://restcountries.com/v3.1/alpha/${e}`);
+          const data = await response.json();
+          arr.push(data[0].name.common);
+        } catch (err) {
+          console.log(err);
+        }
+      })
+    );
+    return arr.join(' ');
+  })()
+  .then((borderCountries) => borderCountries)
+  .catch((err) => console.log(err))}
+  <p class='borderCountry'><b>Border Countries:</b>
+  ${
+    element.borders && element.borders.length
+      ? 
+     fr().f : "No Border"
+  }
+  </p>
+</div>
+
+  
+  
      `;
     });
   } catch (error) {
@@ -71,12 +89,13 @@ toggleMode.addEventListener("click", () => {
   let currentTheme = document.documentElement.getAttribute("data-theme");
   let targetTheme = "";
   console.log(currentTheme);
+  
   if (currentTheme === "light") {
     targetTheme = "dark";
-    toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
+    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`; 
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-    toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
+toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -88,10 +107,13 @@ window.addEventListener("load", () => {
   if (theme) {
     document.documentElement.setAttribute("data-theme", theme);
     if (theme === "light") {
-      toggleMode.innerHTML = `<b><i class="fa-solid fa-moon"></i> Dark Mode</b>`;
+      toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
     } else {
-      toggleMode.innerHTML = `<b><i class="fa-solid fa-sun"></i> Light Mode</b>`;
+       toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
+  }else{
+    document.documentElement.setAttribute("data-theme", "light");
+    toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
 });
 
