@@ -62,13 +62,13 @@ toggleMode.addEventListener("click", () => {
   let currentTheme = document.documentElement.getAttribute("data-theme");
   let targetTheme = "";
   console.log(currentTheme);
-  
+
   if (currentTheme === "light") {
     targetTheme = "dark";
-    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`; 
+    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
+    toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -82,9 +82,9 @@ window.addEventListener("load", () => {
     if (theme === "light") {
       toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
     } else {
-       toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
+      toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
-  }else{
+  } else {
     document.documentElement.setAttribute("data-theme", "light");
     toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
   }
@@ -98,7 +98,6 @@ inputSearch.addEventListener("keyup", (e) => {
       localStorage.setItem("value", e.target.value);
       e.target.value = "";
       localStorage.setItem("switchMode", switchMode);
-
     }
   }
 });

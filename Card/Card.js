@@ -51,8 +51,10 @@ const RenderFetchData = async (Url) => {
       <div class="des1">
          <h2>${element.name.official}</h2>
          <p><b> Native Name:</b> ${
-           Object.values(element.name.nativeName)[0].official ||
            element.name.nativeName
+             ? Object.values(element.name.nativeName)[0].official ||
+               element.name.nativeName
+             : "No Native Name"
          }</p>
          <p><b>Population: </b>${element.population.toLocaleString()}</p>
          <p><b>Region: </b>${element.region}</p>
@@ -62,12 +64,20 @@ const RenderFetchData = async (Url) => {
 
     <div class="des2" >
          <p><b>Top Level Domain: </b>${element.tld}</p>
-         <p><b>Currencies:</b> ${Object.values(element.currencies)[0].name}</p>
-         <p><b>Languages: </b>${Object.values(element.languages)[0]}</p>
+         <p><b>Currencies:</b> ${
+           element.currencies
+             ? Object.values(element.currencies)[0].name
+             : "No Currency"
+         }</p>
+         <p><b>Languages: </b>${
+           element.languages
+             ? Object.values(element.languages)[0]
+             : "No Languages Available"
+         }</p>
     </div>
 
     <div class="des3">
-      <p class='borderCountry'><b>Border Countries:</b>
+      <p class='borderCountry'><b>Border Countries:</b><br>
         ${
           element.borders && element.borders.length
             ? Mode.map((name) => {

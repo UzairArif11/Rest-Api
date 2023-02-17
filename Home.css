@@ -18,7 +18,7 @@ html[data-theme='light']{
   --bgColor : hsl(0, 0%, 100%);
   --headerColor: hsl(0, 0%, 98%);
   --textColor: black;
-  --shadowColor: 0 0.1rem 0.825rem rgb(98 95 95);
+  --shadowColor:0.1rem 0.1rem 0.3rem rgb(98 95 95);
 
 }
 body{
@@ -125,10 +125,11 @@ body{
             display: none;
             position: absolute;
             top: 5rem;
-            left: 1rem;
-            border-radius: 4px;
+            left: 0.6rem;
+          
         }
         .button{
+          border-radius: 4px;
           background-color: var(--headerColor);
          color: var(--textColor);
          margin: 6px;
@@ -154,7 +155,7 @@ body{
       
       #card2 .des1 {
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: start;
         flex-direction: column;
         grid-area: des1;
@@ -162,7 +163,7 @@ body{
       
       #card2 .des2 {
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: start;
         flex-direction: column;
         grid-area: des2;
@@ -171,8 +172,9 @@ body{
       #card2 .des3 {
         grid-area: des3;
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: start;
+        
         flex-direction: column;
       }
       
@@ -205,6 +207,9 @@ body{
         #CardsContainer2{
           width: 90%;
           /* margin: auto; */
+        }
+        #Search2{
+            padding: 0;
         }
         #card2 {
             grid-template-columns: auto;
@@ -256,4 +261,19 @@ body{
               width: 60%;
             }
           }
-          
+          @media screen and (max-width: 288px) {
+            #backButton{
+              display: none;
+              position: absolute;
+              top: 8rem;
+              left: 0.6rem;
+              border-radius: 4px;
+          }
+          .Search{
+
+            padding: 23px;
+            margin-top: 150px;
+            display: flex;
+            justify-content:space-between;
+        }
+          }
