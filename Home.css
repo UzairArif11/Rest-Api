@@ -18,7 +18,7 @@ html[data-theme='light']{
   --bgColor : hsl(0, 0%, 100%);
   --headerColor: hsl(0, 0%, 98%);
   --textColor: black;
-  --shadowColor:0.1rem 0.1rem 0.3rem rgb(98 95 95);
+  --shadowColor:0.1rem 0.1rem 0.3rem rgb(194, 187, 187);
 
 }
 body{
@@ -38,7 +38,7 @@ body{
   right: 0;
   margin-bottom: 1rem;
   z-index: 1;
- 
+  box-shadow:var(--shadowColor);
 }
 #NavbarContenet{
   width: 85%;
@@ -73,6 +73,7 @@ body{
     width: 400px;
     box-sizing: border-box;
     outline: none;
+    box-shadow:var(--shadowColor);
 }
 .Search input[type="text"]::placeholder {
   background-image: url('search.svg');
