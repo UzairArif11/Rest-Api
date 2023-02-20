@@ -210,8 +210,8 @@ body{
       
       #card2{
         display: grid;
-        grid-template-columns: repeat(3, minmax(250px, 1fr));
-        grid-template-rows: 1fr 0.2fr;
+        grid-template-columns:  minmax(250px, 1.5fr) 1fr 1fr ;
+        grid-template-rows: 0.7fr 0.15fr;
         grid-template-areas:
             "image2 des1 des2"
             "image2 des3 des3";
@@ -249,6 +249,9 @@ body{
             "des2"
             "des3";
         }
+        .noDisplay{
+          display: none;
+        }
         #card2 .image2 img {
           width: 100%;
           height: 100%;
@@ -263,10 +266,9 @@ body{
        .Search input,.Search #filter{
          width: 40%;
        }
-      }
+       .none{height: 1.5rem;}      }
       
          
-      
       
         @media screen and (max-width: 488px) {
           *{
@@ -278,7 +280,7 @@ body{
                 margin: auto;
     
             }
-        
+            
             .Search{
               display: flex;
              flex-direction: column;
@@ -300,7 +302,7 @@ body{
               left: 0.6rem;
               border-radius: 4px;
           }
-          .Search{
+         .Search{
 
             padding: 23px;
             margin-top: 150px;

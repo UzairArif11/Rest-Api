@@ -64,7 +64,7 @@ const RenderFetchData = async (Url) => {
     </div></div>
 
     <div class="des2" >
-    <h2 style="visibility:hidden">ujk</h2>
+    <h2 class='noDisplay' style="visibility:hidden">ujk</h2>
     <div class="paraCard">
          <p><b>Top Level Domain: </b>${element.tld}</p>
          <p><b>Currencies:</b> ${
