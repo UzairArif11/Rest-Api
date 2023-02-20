@@ -74,7 +74,7 @@ const RenderFetchData = async (Url) => {
          }</p>
          <p><b>Languages: </b>${
            element.languages
-             ? Object.values(element.languages)[0]
+             ? Object.values(element.languages)
              : "No Languages Available"
          }</p>
     </div></div>
