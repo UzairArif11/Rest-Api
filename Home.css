@@ -12,6 +12,7 @@ html[data-theme='dark']{
     --headerColor: #3B4959;
     --textColor: white;
     --shadowColor: 0.1rem 0.1rem 0.3rem rgb(34, 33, 33);
+    --image: url(find.svg)
 
 }
 html[data-theme='light']{
@@ -19,6 +20,8 @@ html[data-theme='light']{
   --headerColor: hsl(0, 0%, 98%);
   --textColor: black;
   --shadowColor:0.1rem 0.1rem 0.3rem rgb(194, 187, 187);
+  --image: url(search.svg)
+
 
 }
 body{
@@ -76,10 +79,13 @@ body{
     box-shadow:var(--shadowColor);
 }
 .Search input[type="text"]::placeholder {
-  background-image: url('search.svg');
+  background-image: var(--image);
   background-repeat: no-repeat;
-  padding-left: 20px; /* adjust as needed to position the icon */
+  background-size: 18px 18px; /* adjust as needed to set the size of the image */
+  background-position: left; /* adjust as needed to position the icon */
+  padding-left: 30px; /* adjust as needed to make room for the icon */
 }
+
 
 .Search #filter{
     width: 200px;
