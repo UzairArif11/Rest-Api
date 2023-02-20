@@ -34,7 +34,7 @@ const RenderFetchData = async (Url) => {
             })
           );
 
-          borderingCountries = arr;
+          borderingCountries = arr.sort((a, b) => a.localeCompare(b));
         } catch (err) {
           console.log(err);
           return "Error fetching bordering countries";
@@ -74,7 +74,9 @@ const RenderFetchData = async (Url) => {
          }</p>
          <p><b>Languages: </b>${
            element.languages
-             ? Object.values(element.languages)
+             ? Object.values(element.languages).sort((a, b) =>
+                 a.localeCompare(b)
+               )
              : "No Languages Available"
          }</p>
     </div></div>
