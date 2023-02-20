@@ -13,28 +13,34 @@
 </head>
 <body>
     <main>
-        <!--NavBar section-->
-        <section id="Navbar">
-    <h1>Where in the world?</h1>
-     <!-- light/dark mode toggle -->
-   
-    <p id="toggle-mode"><b><i class="fa-solid fa-moon"></i> Dark Mode</b></p>
-    </section>
-        <!--Search and Filter section-->
-        <section class="Search" id="Search2" style="visibility: hidden;">
-            <input type="text" id="myInput"   placeholder=" Search for Country.." title="Type in a name">
-            
-            <select id="filter" name="pets" id="pet-select">
-                <option id="filterContainer" value="Filter by Region">Filter by Region</option>
+    <!--NavBar section-->
+    <section id="Navbar">
+        <div class="row">
+            <div id="NavbarContenet" class="column">
+<h2>Where in the world?</h2>
+ <!-- light/dark mode toggle -->
 
-            </select>
-        </section>
+<p id="toggle-mode"><i class="fa-solid fa-moon"></i> Dark Mode</p></div></div>
+</section>
+<div class="row">
+<div class="column">
+    <!--Search and Filter section-->
+    <section class="Search">
+        <input  style="visibility: hidden;" type="text" id="myInput"   placeholder=" Search for Country.." title="Type in a name">
+        
+        <select  style="visibility: hidden;" id="filter" name="pets" id="pet-select">
+            <option id="filterContainer" value="Filter by Region">Filter by Region</option>
+
+        </select>
+    </section>
+
         <!-- Back Button -->
+   
         <button class="button" id="backButton"><i class="fa-solid fa-arrow-left"></i>  Back</button>
  <!--Card-->
  <div id="CardsContainer2">
     <div id="card2"></div>
- </div>
+ </div></div></div>
     </main>
     <script src="Card.js"></script>
 </body>

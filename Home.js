@@ -25,7 +25,7 @@ const RenderFetchData = async (Url) => {
       } alt="flag image"></div>
      <div class="description">
   
-         <h2 >${element.name.official}</h2>
+         <h2 >${element.name.common}</h2>
          <p><b>Population</b>: ${element.population.toLocaleString()}</p>
          <p><b>Region:</b> ${element.region}</p>
          <p><b>Capital:</b> ${element.capital}</p>
@@ -88,10 +88,11 @@ window.addEventListener("load", () => {
 inputSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     if (e.target.value) {
-      window.location.assign("./Searchcountry/SearchByCountry.html");
-      localStorage.setItem("value", e.target.value);
+      CardContainer.innerHTML = "";
+      const Url = `https://restcountries.com/v3.1/name/${e.target.value}?fullText=true`;
+      backButton.style.display = "block";
+      RenderFetchData(Url);
       e.target.value = "";
-      localStorage.setItem("switchMode", switchMode);
     }
   }
 });

@@ -49,10 +49,11 @@ const RenderFetchData = async (Url) => {
       } alt="flag image"></div>
 
       <div class="des1">
-         <h2>${element.name.official}</h2>
+         <h2>${element.name.common}</h2>
+         <div class="paraCard">
          <p><b> Native Name:</b> ${
            element.name.nativeName
-             ? Object.values(element.name.nativeName)[0].official ||
+             ? Object.values(element.name.nativeName)[0].common ||
                element.name.nativeName
              : "No Native Name"
          }</p>
@@ -60,9 +61,11 @@ const RenderFetchData = async (Url) => {
          <p><b>Region: </b>${element.region}</p>
          <p ><b>Sub Region:</b> ${element.subregion}</p>
          <p><b>Capital: </b>${element.capital}</p>
-    </div>
+    </div></div>
 
     <div class="des2" >
+    <h2 style="visibility:hidden">ujk</h2>
+    <div class="paraCard">
          <p><b>Top Level Domain: </b>${element.tld}</p>
          <p><b>Currencies:</b> ${
            element.currencies
@@ -74,14 +77,14 @@ const RenderFetchData = async (Url) => {
              ? Object.values(element.languages)[0]
              : "No Languages Available"
          }</p>
-    </div>
+    </div></div>
 
     <div class="des3">
-      <p class='borderCountry'><b>Border Countries:</b><br>
+      <p class='borderCountry'><b>Border Countries:</b>
         ${
           element.borders && element.borders.length
             ? Mode.map((name) => {
-                return `<button class="button">${name}</button>`;
+                return `<button class="border">${name}</button>`;
               }).join("")
             : "No Border"
         }
