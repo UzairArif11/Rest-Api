@@ -74,6 +74,11 @@ body{
     box-sizing: border-box;
     outline: none;
 }
+.Search input[type="text"]::placeholder {
+  background-image: url('search.svg');
+  background-repeat: no-repeat;
+  padding-left: 20px; /* adjust as needed to position the icon */
+}
 
 .Search #filter{
     width: 200px;

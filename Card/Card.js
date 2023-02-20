@@ -114,7 +114,7 @@ toggleMode.addEventListener("click", () => {
     toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-    toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
+    toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -126,13 +126,13 @@ window.addEventListener("load", () => {
   if (theme) {
     document.documentElement.setAttribute("data-theme", theme);
     if (theme === "light") {
-      toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
+      toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
     } else {
       toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
   } else {
     document.documentElement.setAttribute("data-theme", "light");
-    toggleMode.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
+    toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
   }
 });
 
