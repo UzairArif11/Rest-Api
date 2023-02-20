@@ -152,7 +152,7 @@ body{
          color: var(--textColor);
           border: 0;
           margin: 1rem;
-          padding:7px 16px;
+          padding:10px 26px;
           cursor: pointer;
           transform: translateY(-0.25rem);
           box-shadow:var(--shadowColor)
