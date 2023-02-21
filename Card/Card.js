@@ -74,9 +74,9 @@ const RenderFetchData = async (Url) => {
          }</p>
          <p><b>Languages: </b>${
            element.languages
-             ? Object.values(element.languages).sort((a, b) =>
-                 a.localeCompare(b)
-               )
+             ? Object.values(element.languages)
+                 .sort((a, b) => a.localeCompare(b))
+                 .join(", ")
              : "No Languages Available"
          }</p>
     </div></div>
