@@ -1,28 +1,31 @@
 const CardContainer = document.getElementById("CardsContainer");
 const inputSearch = document.getElementById("myInput");
-const backButton = document.getElementById("backButton");
 const filter = document.getElementById("filter");
 const toggleMode = document.getElementById("toggle-mode");
 
 let switchMode = localStorage.getItem("switchMode");
+let allCountriesdata;
 
 // Home page Show all country data
-const ShowAllCountries = () => {
+const ShowAllCountries = async () => {
   const Url = "https://restcountries.com/v3.1/all";
-  RenderFetchData(Url);
-};
-// Component to fetch country data
-const RenderFetchData = async (Url) => {
-  try {
-    let response = await fetch(Url);
-    let data = await response.json();
 
-    data.map((element) => {
-      const card = document.createElement("div");
-      card.classList.add("card");
-      card.innerHTML = `<div class="image"><img src=${
-        element.flags.png
-      } alt="flag image"></div>
+  let response = await fetch(Url);
+  let data = await response.json();
+
+  RenderFetchData(data);
+  allCountriesdata = data;
+};
+
+// Component to fetch country data
+const RenderFetchData = (data) => {
+  CardContainer.innerHTML = "";
+  data.map((element) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.innerHTML = `<div class="image"><img src=${
+      element.flags.png
+    } alt="flag image"></div>
      <div class="description">
   
          <h2 >${element.name.common}</h2>
@@ -31,24 +34,18 @@ const RenderFetchData = async (Url) => {
          <p><b>Capital:</b> ${element.capital}</p>
     
      </div>`;
-      //OnClick Card Showing detail of country
-      card.addEventListener("click", () => {
-        window.location.assign("./Card/Card.html");
+    //OnClick Card Showing detail of country
+    card.addEventListener("click", () => {
+      window.location.assign("./Card/Card.html");
 
-        localStorage.setItem("value", element.name.common);
-        localStorage.setItem("switchMode", switchMode);
-      });
-
-      CardContainer.appendChild(card);
+      localStorage.setItem("value", element.name.common);
+      localStorage.setItem("switchMode", switchMode);
     });
-  } catch (error) {
-    console.log(error);
-  }
+
+    CardContainer.appendChild(card);
+  });
 };
-backButton.addEventListener("click", () => {
-  localStorage.getItem("switchMode");
-  location.reload();
-});
+
 //Toggle botton logic
 
 toggleMode.addEventListener("click", () => {
@@ -85,16 +82,11 @@ window.addEventListener("load", () => {
 
 // Search by country name
 
-inputSearch.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") {
-    if (e.target.value) {
-      CardContainer.innerHTML = "";
-      const Url = `https://restcountries.com/v3.1/name/${e.target.value}?fullText=true`;
-      backButton.style.display = "block";
-      RenderFetchData(Url);
-      e.target.value = "";
-    }
-  }
+inputSearch.addEventListener("input", (e) => {
+  const filterCountries = allCountriesdata.filter((countries) =>
+    countries.name.common.toLowerCase().includes(e.target.value.toLowerCase())
+  );
+  RenderFetchData(filterCountries);
 });
 
 // Filter Functionality
@@ -115,14 +107,14 @@ const filterRegion = async () => {
   });
 };
 
-filter.addEventListener("change", (event) => {
+filter.addEventListener("change", async (event) => {
   if (event.target.value === "") return;
   if (event.target.value === "Filter by Region") return;
 
-  CardContainer.innerHTML = "";
   const Url = `https://restcountries.com/v3.1/region/${event.target.value}`;
-  backButton.style.display = "block";
-  RenderFetchData(Url);
+  let response = await fetch(Url);
+  let data = await response.json();
+  RenderFetchData(data);
 });
 
 // window.addEventListener("load", toggleFunction);

@@ -65,8 +65,38 @@ body{
     display: flex;
     justify-content:space-between;
 }
+.search-container {
+  box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.15);
+  
+  width: fit-content;
+  height: fit-content;
+  border-radius: 4px;
+align-items: center;
+vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  color: var(--textColor);
+  background-color: var(--bgColor);
+}
 
-.Search input,.Search #filter {
+.search-container input {
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  border: none;
+  outline: none;
+  color: var(--textColor);
+  background-color: var(--bgColor);
+} 
+.search-container input::placeholder {
+  color: var(--textColor);
+  background-color: var(--bgColor);
+
+}
+
+.Search #filter {
   background-color: var(--bgColor);
   color: var(--textColor);
     padding: 10px;
@@ -78,13 +108,7 @@ body{
     outline: none;
     box-shadow:var(--shadowColor);
 }
-.Search input[type="text"]::placeholder {
-  background-image: var(--image);
-  background-repeat: no-repeat;
-  background-size: 18px 18px; /* adjust as needed to set the size of the image */
-  background-position: left; /* adjust as needed to position the icon */
-  padding-left: 30px; /* adjust as needed to make room for the icon */
-}
+
 
 
 .Search #filter{
@@ -204,6 +228,9 @@ body{
         flex-direction: column;
         grid-area: des2;
       }
+      .empty{
+        grid-area: empty;
+      }
       
       #card2 .des3 {
         grid-area: des3;
@@ -216,11 +243,11 @@ body{
       
       #card2{
         display: grid;
-        grid-template-columns:  minmax(250px, 1.5fr) 1fr 1fr ;
+        grid-template-columns:  minmax(250px, 1.5fr) 0.3fr 1fr 1fr ;
         grid-template-rows: 0.7fr 0.15fr;
         grid-template-areas:
-            "image2 des1 des2"
-            "image2 des3 des3";
+            "image2 empty des1 des2"
+            "image2 empty des3 des3";
         grid-gap: 1rem;
         text-align: center;
         justify-content: center;
@@ -269,7 +296,7 @@ body{
            margin: auto;
 
        }
-       .Search input,.Search #filter{
+       .Search .search-container,.Search #filter{
          width: 40%;
        }
        .none{height: 1.5rem;}      }
@@ -292,27 +319,20 @@ body{
              flex-direction: column;
           }
           
-            .Search input{
+            .Search .search-container{
               width: 90%;
             margin-bottom: 23px;
             }
               .Search #filter{
-              width: 60%;
+              width: 65%;
             }
           }
           @media screen and (max-width: 288px) {
             #backButton{
-              display: none;
               position: absolute;
               top: 8rem;
-              left: 0.6rem;
+              left: 1rem;
               border-radius: 4px;
           }
-         .Search{
-
-            padding: 23px;
-            margin-top: 150px;
-            display: flex;
-            justify-content:space-between;
-        }
+         #CardsContainer2{margin-top: 20%;}
           }
