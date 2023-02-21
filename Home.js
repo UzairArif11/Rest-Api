@@ -4,7 +4,6 @@ const filter = document.getElementById("filter");
 const toggleMode = document.getElementById("toggle-mode");
 
 let switchMode = localStorage.getItem("switchMode");
-let allCountriesdata;
 
 // Home page Show all country data
 const ShowAllCountries = async () => {
@@ -14,7 +13,6 @@ const ShowAllCountries = async () => {
   let data = await response.json();
 
   RenderFetchData(data);
-  allCountriesdata = data;
 };
 
 // Component to fetch country data
@@ -46,16 +44,6 @@ const RenderFetchData = (data) => {
   });
 };
 
-window.addEventListener("pageshow", (e) => {
-  // Check if the current page is the main page
-  if (
-    e.persisted ||
-    (window.performance && window.performance.navigation.type === 2)
-  ) {
-    // Clear the value of the search input field
-    inputSearch.value = "";
-  }
-});
 //Toggle botton logic
 
 toggleMode.addEventListener("click", () => {
@@ -89,14 +77,19 @@ window.addEventListener("load", () => {
     toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
   }
 });
-
 // Search by country name
 
-inputSearch.addEventListener("input", (e) => {
-  const filterCountries = allCountriesdata.filter((countries) =>
-    countries.name.common.toLowerCase().includes(e.target.value.toLowerCase())
-  );
-  RenderFetchData(filterCountries);
+inputSearch.addEventListener("keyup", async (e) => {
+  if (e.key === "Enter") {
+    if (e.target.value) {
+      CardContainer.innerHTML = "";
+      const Url = `https://restcountries.com/v3.1/name/${e.target.value}?fullText=true`;
+      let response = await fetch(Url);
+      let data = await response.json();
+      RenderFetchData(data);
+      e.target.value = "";
+    }
+  }
 });
 
 // Filter Functionality

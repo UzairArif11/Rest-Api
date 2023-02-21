@@ -9,7 +9,6 @@ let switchMode = localStorage.getItem("switchMode");
 const ShowAllCountries = () => {
   var value = localStorage.getItem("value");
   const Url = `https://restcountries.com/v3.1/name/${value}?fullText=true`;
-  backButton.style.display = "block";
 
   RenderFetchData(Url);
 };
