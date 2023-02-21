@@ -83,7 +83,7 @@ inputSearch.addEventListener("keyup", async (e) => {
   if (e.key === "Enter") {
     if (e.target.value) {
       CardContainer.innerHTML = "";
-      const Url = `https://restcountries.com/v3.1/name/${e.target.value}?fullText=true`;
+      const Url = `https://restcountries.com/v3.1/name/${e.target.value}`;
       let response = await fetch(Url);
       let data = await response.json();
       RenderFetchData(data);
