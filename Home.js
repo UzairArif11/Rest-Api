@@ -1,5 +1,5 @@
 const CardContainer = document.getElementById("CardsContainer");
-const inputSearch = document.getElementById("myInput");
+let inputSearch = document.getElementById("myInput");
 const filter = document.getElementById("filter");
 const toggleMode = document.getElementById("toggle-mode");
 
@@ -46,6 +46,16 @@ const RenderFetchData = (data) => {
   });
 };
 
+window.addEventListener("pageshow", (e) => {
+  // Check if the current page is the main page
+  if (
+    e.persisted ||
+    (window.performance && window.performance.navigation.type === 2)
+  ) {
+    // Clear the value of the search input field
+    inputSearch.value = "";
+  }
+});
 //Toggle botton logic
 
 toggleMode.addEventListener("click", () => {
