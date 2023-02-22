@@ -1,23 +1,24 @@
-const CardContainer = document.getElementById("CardsContainer");
+const cardContainer = document.getElementById("CardsContainer");
 let inputSearch = document.getElementById("myInput");
 const filter = document.getElementById("filter");
 const toggleMode = document.getElementById("toggle-mode");
 
+const API_BASE_URL = `https://restcountries.com/v3.1`;
 let switchMode = localStorage.getItem("switchMode");
 
 // Home page Show all country data
-const ShowAllCountries = async () => {
-  const Url = "https://restcountries.com/v3.1/all";
+const showAllCountries = async () => {
+  const Url = `${API_BASE_URL}/all`;
 
   let response = await fetch(Url);
   let data = await response.json();
 
-  RenderFetchData(data);
+  renderCountriesData(data);
 };
 
 // Component to fetch country data
-const RenderFetchData = (data) => {
-  CardContainer.innerHTML = "";
+const renderCountriesData = (data) => {
+  cardContainer.innerHTML = "";
   data.map((element) => {
     const card = document.createElement("div");
     card.classList.add("card");
@@ -40,7 +41,7 @@ const RenderFetchData = (data) => {
       localStorage.setItem("switchMode", switchMode);
     });
 
-    CardContainer.appendChild(card);
+    cardContainer.appendChild(card);
   });
 };
 
@@ -82,11 +83,11 @@ window.addEventListener("load", () => {
 inputSearch.addEventListener("keyup", async (e) => {
   if (e.key === "Enter") {
     if (e.target.value) {
-      CardContainer.innerHTML = "";
-      const Url = `https://restcountries.com/v3.1/name/${e.target.value}`;
+      cardContainer.innerHTML = "";
+      const Url = `${API_BASE_URL}/name/${e.target.value}`;
       let response = await fetch(Url);
       let data = await response.json();
-      RenderFetchData(data);
+      renderCountriesData(data);
       e.target.value = "";
     }
   }
@@ -94,8 +95,8 @@ inputSearch.addEventListener("keyup", async (e) => {
 
 // Filter Functionality
 
-const filterRegion = async () => {
-  let Url = "https://restcountries.com/v3.1/all";
+const createFilterOptions = async () => {
+  let Url = `${API_BASE_URL}/all`;
 
   let response = await fetch(Url);
   let data = await response.json();
@@ -114,12 +115,11 @@ filter.addEventListener("change", async (event) => {
   if (event.target.value === "") return;
   if (event.target.value === "Filter by Region") return;
 
-  const Url = `https://restcountries.com/v3.1/region/${event.target.value}`;
+  const Url = `${API_BASE_URL}/region/${event.target.value}`;
   let response = await fetch(Url);
   let data = await response.json();
-  RenderFetchData(data);
+  renderCountriesData(data);
 });
 
-// window.addEventListener("load", toggleFunction);
-ShowAllCountries();
-filterRegion();
+showAllCountries();
+createFilterOptions();

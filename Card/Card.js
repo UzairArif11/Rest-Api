@@ -1,4 +1,3 @@
-const CardContainer = document.getElementById("CardsContainer");
 const backButton = document.getElementById("backButton");
 const toggleMode = document.getElementById("toggle-mode");
 const card = document.getElementById("card2");
@@ -6,14 +5,14 @@ const card = document.getElementById("card2");
 let switchMode = localStorage.getItem("switchMode");
 
 // Home page Show all country data
-const ShowAllCountries = () => {
+const showAllCountries = () => {
   var value = localStorage.getItem("value");
   const Url = `https://restcountries.com/v3.1/name/${value}?fullText=true`;
 
-  RenderFetchData(Url);
+  renderCountriesData(Url);
 };
 // Component to fetch country data
-const RenderFetchData = async (Url) => {
+const renderCountriesData = async (Url) => {
   try {
     let response = await fetch(Url);
     let data = await response.json();
@@ -140,4 +139,4 @@ window.addEventListener("load", () => {
 });
 
 // window.addEventListener("load",toggleFunction);
-ShowAllCountries();
+showAllCountries();
