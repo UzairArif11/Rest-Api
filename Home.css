@@ -60,7 +60,7 @@ body {
 }
 .search-container {
   box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.15);
-padding-left: 5px;
+  padding-left: 5px;
   width: fit-content;
   height: fit-content;
   border-radius: 4px;
@@ -210,12 +210,10 @@ padding-left: 5px;
   flex-direction: column;
   grid-area: des2;
 }
-#card2 .des2 .paraCard p{
+#card2 .des2 .paraCard p {
   display: flex;
   justify-content: start;
   flex-direction: row;
-
-
 }
 .empty {
   grid-area: empty;
@@ -230,7 +228,6 @@ padding-left: 5px;
   flex-direction: column;
 }
 
-
 #card2 {
   display: grid;
   grid-template-columns: minmax(250px, 1.5fr) 0.3fr 1fr 1fr;
@@ -239,7 +236,7 @@ padding-left: 5px;
     "image2 empty des1 des2"
     "image2 empty des3 des3";
   grid-gap: 1rem;
-  text-align: center;
+  text-align: start;
   justify-content: center;
   background-color: var(--headerColor);
   color: var(--textColor);
@@ -269,7 +266,6 @@ padding-left: 5px;
       "des1"
       "des2"
       "des3";
-  
   }
   .noDisplay {
     display: none;
