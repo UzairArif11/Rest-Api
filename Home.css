@@ -210,11 +210,7 @@ body {
   flex-direction: column;
   grid-area: des2;
 }
-#card2 .des2 .paraCard p {
-  display: flex;
-  justify-content: start;
-  flex-direction: row;
-}
+
 .empty {
   grid-area: empty;
 }
