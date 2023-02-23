@@ -1,50 +1,46 @@
 const backButton = document.getElementById("backButton");
-const toggleMode = document.getElementById("toggle-mode");
+const toggleTheme = document.getElementById("toggle-mode");
 const card = document.getElementById("card2");
 
 let switchMode = localStorage.getItem("switchMode");
+const API_BASE_URL = `https://restcountries.com/v3.1`;
 
 // Home page Show all country data
-const showAllCountries = () => {
+const showAllCountries = async () => {
   var value = localStorage.getItem("value");
-  const Url = `https://restcountries.com/v3.1/name/${value}?fullText=true`;
-
-  renderCountriesData(Url);
+  const Url = `${API_BASE_URL}/name/${value}?fullText=true`;
+  let response = await fetch(Url);
+  let data = await response.json();
+  renderCountriesData(data);
 };
 // Component to fetch country data
-const renderCountriesData = async (Url) => {
-  try {
-    let response = await fetch(Url);
-    let data = await response.json();
+const renderCountriesData = async (data) => {
+  let borderingCountries = [];
+  await Promise.all(
+    data.map(async (element) => {
+      let arr = [];
+      try {
+        await Promise.all(
+          element.borders.map(async (e) => {
+            const response = await fetch(`${API_BASE_URL}/alpha/${e}`);
+            const data = await response.json();
+            arr.push(data[0].name.common);
+          })
+        );
 
-    let borderingCountries = [];
-    await Promise.all(
-      data.map(async (element) => {
-        let arr = [];
-        try {
-          await Promise.all(
-            element.borders.map(async (e) => {
-              const response = await fetch(
-                `https://restcountries.com/v3.1/alpha/${e}`
-              );
-              const data = await response.json();
-              arr.push(data[0].name.common);
-            })
-          );
+        borderingCountries = arr.sort((a, b) => a.localeCompare(b));
+      } catch (err) {
+        console.log(err);
+        return "Error fetching bordering countries";
+      }
+    })
+  );
 
-          borderingCountries = arr.sort((a, b) => a.localeCompare(b));
-        } catch (err) {
-          console.log(err);
-          return "Error fetching bordering countries";
-        }
-      })
-    );
-
-    data.map((element) => {
-      let Mode = borderingCountries;
-      card.innerHTML = `<div class="image2"><img src=${
-        element.flags.png
-      } alt="flag image"></div>
+  data.map((element) => {
+    let Mode = borderingCountries;
+    card.innerHTML = `<div class="image2"><img src=${
+      element.flags.png
+    } alt="flag image"></div>
 
       <div class="des1">
          <h2>${element.name.common}</h2>
@@ -92,31 +88,27 @@ const renderCountriesData = async (Url) => {
     </div>
     <div class="empty"></div>
     `;
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  });
 };
 
-// Back botton and Toggle botton logic
+// Back button and Toggle button logic
 backButton.addEventListener("click", () => {
   localStorage.setItem("switchMode", switchMode);
   history.back();
 });
 
-//Toggle botton logic
+//Toggle button logic
 
-toggleMode.addEventListener("click", () => {
+toggleTheme.addEventListener("click", () => {
   let currentTheme = document.documentElement.getAttribute("data-theme");
   let targetTheme = "";
-  console.log(currentTheme);
 
   if (currentTheme === "light") {
     targetTheme = "dark";
-    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
+    toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-    toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+    toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -128,13 +120,13 @@ window.addEventListener("load", () => {
   if (theme) {
     document.documentElement.setAttribute("data-theme", theme);
     if (theme === "light") {
-      toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+      toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
     } else {
-      toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
+      toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
   } else {
     document.documentElement.setAttribute("data-theme", "light");
-    toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+    toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
   }
 });
 

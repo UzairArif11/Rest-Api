@@ -1,7 +1,7 @@
 const cardContainer = document.getElementById("CardsContainer");
 let inputSearch = document.getElementById("myInput");
 const filter = document.getElementById("filter");
-const toggleMode = document.getElementById("toggle-mode");
+const toggleTheme = document.getElementById("toggle-mode");
 
 const API_BASE_URL = `https://restcountries.com/v3.1`;
 let switchMode = localStorage.getItem("switchMode");
@@ -45,19 +45,18 @@ const renderCountriesData = (data) => {
   });
 };
 
-//Toggle botton logic
+//Toggle button logic
 
-toggleMode.addEventListener("click", () => {
+toggleTheme.addEventListener("click", () => {
   let currentTheme = document.documentElement.getAttribute("data-theme");
   let targetTheme = "";
-  console.log(currentTheme);
 
   if (currentTheme === "light") {
     targetTheme = "dark";
-    toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
+    toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-    toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+    toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -69,13 +68,13 @@ window.addEventListener("load", () => {
   if (theme) {
     document.documentElement.setAttribute("data-theme", theme);
     if (theme === "light") {
-      toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+      toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
     } else {
-      toggleMode.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
+      toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
   } else {
     document.documentElement.setAttribute("data-theme", "light");
-    toggleMode.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+    toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
   }
 });
 // Search by country name
