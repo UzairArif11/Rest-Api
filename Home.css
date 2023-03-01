@@ -39,15 +39,13 @@ body {
   box-shadow: var(--shadowColor);
 }
 #NavbarContenet {
-  width: 85%;
-  margin: 1rem;
-  background-color: var(--bgColor);
+
   color: var(--textColor);
   z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 14px 0px 14px;
+  
 }
 
 /* Search and Filter section */
@@ -60,7 +58,7 @@ body {
 }
 .search-container {
   box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.15);
-  padding-left: 5px;
+padding-left: 5px;
   width: fit-content;
   height: fit-content;
   border-radius: 4px;
@@ -112,23 +110,17 @@ body {
   align-items: center;
 }
 .column {
-  width: 90%;
+  width: 90vw;
 }
 
 /* Card section */
 #CardsContainer {
-
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-inline: auto;
-  margin-left:auto;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 300px));
+  grid-template-rows: 1fr;
+  justify-content: space-between;
 }
 .card {
-  display: inline-block;
-  width: 250px;
-  box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.2);
   background-color: var(--bgColor);
   color: var(--textColor);
   margin: 1rem;
@@ -216,7 +208,13 @@ body {
   flex-direction: column;
   grid-area: des2;
 }
+#card2 .des2 .paraCard p{
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
 
+
+}
 .empty {
   grid-area: empty;
 }
@@ -227,8 +225,9 @@ body {
   justify-content: start;
   align-items: start;
 
-  /* flex-direction: column; */
+  flex-direction: column;
 }
+
 
 #card2 {
   display: grid;
@@ -238,7 +237,7 @@ body {
     "image2 empty des1 des2"
     "image2 empty des3 des3";
   grid-gap: 1rem;
-  text-align: start;
+  text-align: center;
   justify-content: center;
   background-color: var(--headerColor);
   color: var(--textColor);
@@ -268,6 +267,7 @@ body {
       "des1"
       "des2"
       "des3";
+  
   }
   .noDisplay {
     display: none;
@@ -324,4 +324,14 @@ body {
   #CardsContainer2 {
     margin-top: 20%;
   }
+}
+@media (min-width: 1524px) {
+  
+
+.column{width: 80%;}
+}
+@media (min-width: 2000px) {
+  
+
+.column{width: 70%;}
 }
