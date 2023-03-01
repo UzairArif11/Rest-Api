@@ -289,9 +289,9 @@ padding-left: 5px;
     object-fit: cover;
   }
   #CardsContainer {
-    width: 80%;
-    grid-template-columns: 1fr 1fr;
-    margin: auto;
+  
+    grid-template-columns: repeat(2, minmax(250px, 300px));
+    justify-content: center;
   }
   .Search .search-container,
   .Search #filter {
