@@ -116,7 +116,7 @@ padding-left: 5px;
 /* Card section */
 #CardsContainer {
   display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 300px));
+  grid-template-columns: repeat(4, minmax(250px, 300px));
   grid-template-rows: 1fr;
   justify-content: space-between;
 }
@@ -251,6 +251,16 @@ padding-left: 5px;
   transition: all 0.3s;
 }
 
+
+@media screen and (max-width: 1158px) {
+
+  #CardsContainer {
+    width: 80%;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: auto;
+  }
+
+}
 @media screen and (max-width: 828px) {
   #CardsContainer2 {
     width: 90%;
@@ -331,7 +341,11 @@ padding-left: 5px;
 .column{width: 80%;}
 }
 @media (min-width: 2000px) {
+  #CardsContainer {
   
+    grid-template-columns: repeat(4, minmax(300px, 400px));
+   
+  }
 
 .column{width: 70%;}
 }
