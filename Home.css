@@ -1,6 +1,5 @@
 :root {
   --veryLightGray: hsl(0, 0%, 98%);
-  
 }
 /* styles for the light/dark mode toggle */
 #toggle-mode {
@@ -40,13 +39,11 @@ body {
   box-shadow: var(--shadowColor);
 }
 #NavbarContenet {
-
   color: var(--textColor);
   z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
 
 /* Search and Filter section */
@@ -59,7 +56,7 @@ body {
 }
 .search-container {
   box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.15);
-padding-left: 5px;
+  padding-left: 5px;
   width: fit-content;
   height: fit-content;
   border-radius: 4px;
@@ -209,12 +206,10 @@ padding-left: 5px;
   flex-direction: column;
   grid-area: des2;
 }
-#card2 .des2 .paraCard p{
+#card2 .des2 .paraCard p {
   display: flex;
   justify-content: start;
   flex-direction: row;
-
-
 }
 .empty {
   grid-area: empty;
@@ -228,7 +223,6 @@ padding-left: 5px;
 
   flex-direction: column;
 }
-
 
 #card2 {
   display: grid;
@@ -252,15 +246,10 @@ padding-left: 5px;
   transition: all 0.3s;
 }
 
-
 @media screen and (max-width: 1158px) {
-
   #CardsContainer {
-    
     grid-template-columns: repeat(3, minmax(250px, 300px));
-   
   }
-
 }
 @media screen and (max-width: 828px) {
   #CardsContainer2 {
@@ -278,7 +267,6 @@ padding-left: 5px;
       "des1"
       "des2"
       "des3";
-  
   }
   .noDisplay {
     display: none;
@@ -289,7 +277,6 @@ padding-left: 5px;
     object-fit: cover;
   }
   #CardsContainer {
-  
     grid-template-columns: repeat(2, minmax(250px, 300px));
     justify-content: center;
   }
@@ -306,8 +293,10 @@ padding-left: 5px;
   * {
     font-size: medium;
   }
+  .column {
+    width: 90%;
+  }
   #CardsContainer {
-    width: 80%;
     grid-template-columns: 1fr;
     margin: auto;
   }
@@ -322,7 +311,7 @@ padding-left: 5px;
     margin-bottom: 23px;
   }
   .Search #filter {
-    width: 65%;
+    width: 75%;
   }
 }
 @media screen and (max-width: 288px) {
@@ -337,16 +326,16 @@ padding-left: 5px;
   }
 }
 @media (min-width: 1524px) {
-  
-
-.column{width: 80%;}
+  .column {
+    width: 80%;
+  }
 }
 @media (min-width: 2000px) {
   #CardsContainer {
-  
     grid-template-columns: repeat(4, minmax(300px, 400px));
-   
   }
 
-.column{width: 70%;}
+  .column {
+    width: 70%;
+  }
 }
