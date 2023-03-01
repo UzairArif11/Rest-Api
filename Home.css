@@ -1,5 +1,6 @@
 :root {
   --veryLightGray: hsl(0, 0%, 98%);
+  
 }
 /* styles for the light/dark mode toggle */
 #toggle-mode {
@@ -255,9 +256,9 @@ padding-left: 5px;
 @media screen and (max-width: 1158px) {
 
   #CardsContainer {
-    width: 80%;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin: auto;
+    
+    grid-template-columns: repeat(3, minmax(250px, 300px));
+   
   }
 
 }
