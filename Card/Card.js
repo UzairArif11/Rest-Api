@@ -13,31 +13,34 @@ const showAllCountries = async () => {
   let data = await response.json();
   renderCountriesData(data);
 };
+
+// Fetching Country borders names 
+const borderCountriesFunction = async (data) => {
+  try {
+    const borderingCountries = await Promise.all(
+      data[0].borders.map(async (e) => {
+        const response = await fetch(`${API_BASE_URL}/alpha/${e}`);
+        const data = await response.json();
+        return data[0].name.common;
+      })
+    );
+    borderingCountries.sort((a, b) => a.localeCompare(b));
+    return borderingCountries;
+  } catch (err) {
+    console.log(err);
+    return "Error fetching bordering countries";
+  }
+};
+
 // Component to fetch country data
 const renderCountriesData = async (data) => {
-  let borderingCountries = [];
-  await Promise.all(
-    data.map(async (element) => {
-      let arr = [];
-      try {
-        await Promise.all(
-          element.borders.map(async (e) => {
-            const response = await fetch(`${API_BASE_URL}/alpha/${e}`);
-            const data = await response.json();
-            arr.push(data[0].name.common);
-          })
-        );
+  
 
-        borderingCountries = arr.sort((a, b) => a.localeCompare(b));
-      } catch (err) {
-        console.log(err);
-        return "Error fetching bordering countries";
-      }
-    })
-  );
-
+  const borderingCountries = await borderCountriesFunction(data);
+ 
+  
   data.map((element) => {
-    let Mode = borderingCountries;
+  
     card.innerHTML = `<div class="image2"><img src=${
       element.flags.png
     } alt="flag image"></div>
@@ -79,7 +82,7 @@ const renderCountriesData = async (data) => {
       <p class='borderCountry'><b>Border Countries:</b>
         ${
           element.borders && element.borders.length
-            ? Mode.map((name) => {
+            ? borderingCountries.map((name) => {
                 return `<button class="border">${name}</button>`;
               }).join("")
             : "No Border"
@@ -90,6 +93,9 @@ const renderCountriesData = async (data) => {
     `;
   });
 };
+
+
+
 
 // Back button and Toggle button logic
 backButton.addEventListener("click", () => {
