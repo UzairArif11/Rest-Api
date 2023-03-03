@@ -45,6 +45,12 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+#NavbarContenet h2 {
+  margin-left: 20px;
+}
+#NavbarContenet p {
+  margin-right: 30px;
+}
 
 /* Search and Filter section */
 .Search {
@@ -194,7 +200,7 @@ body {
 #card2 .des1 {
   display: flex;
   justify-content: start;
-  align-items: start;
+  align-items: flex-start;
   flex-direction: column;
   grid-area: des1;
 }
@@ -206,11 +212,14 @@ body {
   flex-direction: column;
   grid-area: des2;
 }
-#card2 .des2 .paraCard p {
+.paraCard p {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   flex-direction: row;
+  line-height: 1.2;
 }
+
 .empty {
   grid-area: empty;
 }
@@ -223,6 +232,14 @@ body {
 
   flex-direction: column;
 }
+#card2 .des3 p b, #card2 .des3 p {
+  grid-area: des3;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+flex-wrap: wrap;
+  flex-direction: row;
+}
 
 #card2 {
   display: grid;
@@ -233,7 +250,7 @@ body {
     "image2 empty des3 des3";
   grid-gap: 1rem;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: var(--headerColor);
   color: var(--textColor);
   margin: 1rem;
@@ -287,6 +304,12 @@ body {
   .none {
     height: 1.5rem;
   }
+  #NavbarContenet h2 {
+    margin-left: 0px;
+  }
+  #NavbarContenet p {
+    margin-right: 0px;
+  }
 }
 
 @media screen and (max-width: 488px) {
@@ -313,6 +336,7 @@ body {
   .Search #filter {
     width: 75%;
   }
+  
 }
 @media screen and (max-width: 288px) {
   #backButton {
@@ -324,6 +348,7 @@ body {
   #CardsContainer2 {
     margin-top: 20%;
   }
+ 
 }
 @media (min-width: 1524px) {
   .column {
