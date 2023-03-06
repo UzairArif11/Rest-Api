@@ -3,6 +3,7 @@ let inputSearch = document.getElementById("myInput");
 const filter = document.getElementById("filter");
 const toggleTheme = document.getElementById("toggle-mode");
 
+
 const API_BASE_URL = `https://restcountries.com/v3.1`;
 let switchMode = localStorage.getItem("switchMode");
 
@@ -76,6 +77,9 @@ window.addEventListener("load", () => {
     document.documentElement.setAttribute("data-theme", "light");
     toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
   }
+
+
+
 });
 // Search by country name
 
@@ -106,19 +110,40 @@ const createFilterOptions = async () => {
   regions.forEach((region) => {
     const option = document.createElement("option");
     option.innerText = region;
+    option.value= region;
     filter.appendChild(option);
   });
 };
+// Check if the user is coming from a different page
+if (performance.getEntriesByType("navigation")[0].type==="reload") {
+  localStorage.removeItem("regionFilter");
+}
 
-filter.addEventListener("change", async (event) => {
-  if (event.target.value === "") return;
-  if (event.target.value === "Filter by Region") return;
+window.addEventListener("load", () => {
 
-  const Url = `${API_BASE_URL}/region/${event.target.value}`;
+  const regionFilter = localStorage.getItem("regionFilter");
+  console.log(regionFilter);
+  if (regionFilter) {
+    filter.value = regionFilter;
+    filter.dispatchEvent(new Event("change"));
+  
+  }
+});
+// Search by Filter
+filter.addEventListener("change",  (event) => {
+  localStorage.setItem('regionFilter', event.target.value)
+  
+ showFilterData(event.target.value);
+});
+// Search by Filter
+const showFilterData =async(event)=>{
+  if (event === "") return;
+  if (event === "Filter by Region") return;
+
+const Url = `${API_BASE_URL}/region/${event}`;
   let response = await fetch(Url);
   let data = await response.json();
-  renderCountriesData(data);
-});
+  renderCountriesData(data);}
 
 showAllCountries();
 createFilterOptions();
