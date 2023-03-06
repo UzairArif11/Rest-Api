@@ -1,6 +1,23 @@
 :root {
   --veryLightGray: hsl(0, 0%, 98%);
 }
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+  background-color: var(--headerColor);
+  color: var(--textColor);
+}
+
+h1 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+}
+
+p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+}
+
 /* styles for the light/dark mode toggle */
 #toggle-mode {
   cursor: pointer;
@@ -20,11 +37,7 @@ html[data-theme="light"] {
   --shadowColor: 0.1rem 0.1rem 0.3rem rgb(194, 187, 187);
   --image: url(search.svg);
 }
-body {
-  font-family: sans-serif;
-  background-color: var(--headerColor);
-  color: var(--textColor);
-}
+
 
 /* NavBar section */
 #Navbar {
@@ -56,11 +69,12 @@ body {
 .Search {
   padding-top: 1rem;
   margin: 1rem;
-  margin-top: 90px;
+  margin-top: 60px;
   display: flex;
   justify-content: space-between;
 }
 .search-container {
+  padding-right: 14vw;
   box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.15);
   padding-left: 5px;
   width: fit-content;
@@ -300,28 +314,25 @@ flex-wrap: wrap;
   .Search .search-container,
   .Search #filter {
     width: 40%;
+    padding-right: 1vw;
   }
   .none {
     height: 1.5rem;
   }
-  #NavbarContenet h2 {
-    margin-left: 0px;
-  }
-  #NavbarContenet p {
-    margin-right: 0px;
-  }
+  
 }
 
 @media screen and (max-width: 488px) {
   * {
-    font-size: medium;
+    font-size: medium !important;
   }
   .column {
-    width: 90%;
+    /* width: 90%; */
   }
   #CardsContainer {
-    grid-template-columns: 1fr;
+    grid-template-columns: 80vw;
     margin: auto;
+   
   }
 
   .Search {
@@ -337,8 +348,22 @@ flex-wrap: wrap;
     width: 75%;
   }
   
+  .Search #filter option {
+    width: 25% !important;
+  }
+  
+  
 }
 @media screen and (max-width: 288px) {
+  * {
+    font-size:small !important;
+  }
+  #NavbarContenet h2 {
+    margin-left: 0px;
+  }
+  #NavbarContenet p {
+    margin-right: 0px;
+  }
   #backButton {
     position: absolute;
     top: 8rem;
