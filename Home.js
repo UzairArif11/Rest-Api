@@ -29,9 +29,9 @@ const renderCountriesData = (data) => {
      <div class="description">
   
          <h2 >${element.name.common}</h2>
-         <p><b>Population</b>: ${element.population.toLocaleString()}</p>
-         <p><b>Region:</b> ${element.region}</p>
-         <p><b>Capital:</b> ${element.capital}</p>
+         <p><b>Population : </b> ${element.population.toLocaleString()}</p>
+         <p><b>Region  :    </b>   ${element.region}</p>
+         <p><b>Capital : </b> ${element.capital}</p>
     
      </div>`;
     //OnClick Card Showing detail of country
