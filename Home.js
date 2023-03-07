@@ -96,24 +96,6 @@ inputSearch.addEventListener("keyup", async (e) => {
   }
 });
 
-// Filter Functionality
-
-const createFilterOptions = async () => {
-  let Url = `${API_BASE_URL}/all`;
-
-  let response = await fetch(Url);
-  let data = await response.json();
-
-  let regions = [...new Set(data.map(({ region }) => region))];
-  regions.sort((a, b) => a.localeCompare(b));
-
-  regions.forEach((region) => {
-    const option = document.createElement("option");
-    option.innerText = region;
-    option.value= region;
-    filter.appendChild(option);
-  });
-};
 // Check if the user is coming from a different page
 if (performance.getEntriesByType("navigation")[0].type==="reload") {
   localStorage.removeItem("regionFilter");
@@ -122,7 +104,7 @@ if (performance.getEntriesByType("navigation")[0].type==="reload") {
 window.addEventListener("load", () => {
 
   const regionFilter = localStorage.getItem("regionFilter");
-  console.log(regionFilter);
+
   if (regionFilter) {
     filter.value = regionFilter;
     filter.dispatchEvent(new Event("change"));
@@ -146,4 +128,3 @@ const Url = `${API_BASE_URL}/region/${event}`;
   renderCountriesData(data);}
 
 showAllCountries();
-createFilterOptions();
