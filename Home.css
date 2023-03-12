@@ -69,7 +69,7 @@ html[data-theme="light"] {
 
 /* Search and Filter section */
 .Search {
-  padding-top: 1rem;
+  padding-top: 2rem;
   margin: 1rem;
   margin-top: 60px;
   display: flex;
