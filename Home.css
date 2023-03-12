@@ -35,7 +35,7 @@ html[data-theme="light"] {
   --bgColor: hsl(0, 0%, 100%);
   --headerColor: hsl(0, 0%, 98%);
   --textColor: black;
-  --textColor2:#b0b0b0;
+  --textColor2:#b2b2b2;
   --shadowColor: 0.1rem 0.1rem 0.3rem #efefef;
   --image: url(search.svg);
 }
