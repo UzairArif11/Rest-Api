@@ -3,6 +3,7 @@ let inputSearch = document.getElementById("myInput");
 const filter = document.getElementById("filter");
 const toggleTheme = document.getElementById("toggle-mode");
 
+
 const API_BASE_URL = `https://restcountries.com/v3.1`;
 let switchMode = localStorage.getItem("switchMode");
 
@@ -28,9 +29,9 @@ const renderCountriesData = (data) => {
      <div class="description">
   
          <h2 >${element.name.common}</h2>
-         <p><b>Population</b>: ${element.population.toLocaleString()}</p>
-         <p><b>Region:</b> ${element.region}</p>
-         <p><b>Capital:</b> ${element.capital}</p>
+         <p><b>Population : </b> ${element.population.toLocaleString()}</p>
+         <p><b>Region  :    </b>   ${element.region}</p>
+         <p><b>Capital : </b> ${element.capital}</p>
     
      </div>`;
     //OnClick Card Showing detail of country
@@ -76,6 +77,9 @@ window.addEventListener("load", () => {
     document.documentElement.setAttribute("data-theme", "light");
     toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Light Mode`;
   }
+
+
+
 });
 // Search by country name
 
@@ -92,33 +96,35 @@ inputSearch.addEventListener("keyup", async (e) => {
   }
 });
 
-// Filter Functionality
+// Check if the user is coming from a different page
+if (performance.getEntriesByType("navigation")[0].type==="reload") {
+  localStorage.removeItem("regionFilter");
+}
 
-const createFilterOptions = async () => {
-  let Url = `${API_BASE_URL}/all`;
+window.addEventListener("load", () => {
 
-  let response = await fetch(Url);
-  let data = await response.json();
+  const regionFilter = localStorage.getItem("regionFilter");
 
-  let regions = [...new Set(data.map(({ region }) => region))];
-  regions.sort((a, b) => a.localeCompare(b));
-
-  regions.forEach((region) => {
-    const option = document.createElement("option");
-    option.innerText = region;
-    filter.appendChild(option);
-  });
-};
-
-filter.addEventListener("change", async (event) => {
-  if (event.target.value === "") return;
-  if (event.target.value === "Filter by Region") return;
-
-  const Url = `${API_BASE_URL}/region/${event.target.value}`;
-  let response = await fetch(Url);
-  let data = await response.json();
-  renderCountriesData(data);
+  if (regionFilter) {
+    filter.value = regionFilter;
+    filter.dispatchEvent(new Event("change"));
+  
+  }
 });
+// Search by Filter
+filter.addEventListener("change",  (event) => {
+  localStorage.setItem('regionFilter', event.target.value)
+  
+ showFilterData(event.target.value);
+});
+// Search by Filter
+const showFilterData =async(event)=>{
+  if (event === "") return;
+  if (event === "Filter by Region") return;
+
+const Url = `${API_BASE_URL}/region/${event}`;
+  let response = await fetch(Url);
+  let data = await response.json();
+  renderCountriesData(data);}
 
 showAllCountries();
-createFilterOptions();

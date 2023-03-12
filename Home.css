@@ -104,22 +104,31 @@ html[data-theme="light"] {
   background-color: var(--bgColor);
 }
 
-.Search #filter {
+.Search #filter
+ {
+
   background-color: var(--bgColor);
   color: var(--textColor);
   padding: 10px;
   font-size: 16px;
   border-radius: 5px 0 0 5px;
-  border: 1px solid var(--bgColor);
-  width: 400px;
+ 
+width: 95%;
+  box-sizing: border-box;
+  outline: none;
+  border: white;
+
+}
+
+.Search #filter-container  {
+
+ height: fit-content;
+  width: 220px;
+    background-color: var(--bgColor);
+    color: var(--textColor);
   box-sizing: border-box;
   outline: none;
   box-shadow: var(--shadowColor);
-}
-
-.Search #filter {
-  width: 200px;
-  outline: none;
 }
 .row {
   display: flex;
@@ -311,11 +320,17 @@ flex-wrap: wrap;
     grid-template-columns: repeat(2, minmax(250px, 300px));
     justify-content: center;
   }
-  .Search .search-container,
-  .Search #filter {
+  .Search .search-container
+  {
     width: 45%;
-    padding-right: 1vw;
+    padding-right: 1vw  ;
   }
+  .Search #filter-container
+  {
+    width: 40% ;
+    padding-right: 1vw  ;
+  }
+
   .none {
     height: 1.5rem;
   }
@@ -344,19 +359,21 @@ flex-wrap: wrap;
     width: 90%;
     margin-bottom: 23px;
   }
-  .Search #filter {
-    width: 75%;
+  .Search #filter-container {
+    width: 65%;
+        
   }
-  
-  .Search #filter option {
-    width: 25% !important;
-  }
-  
+  .Search #filter,
+.Search #filter option
+ {
+
+ width: 95%;
+ }
   
 }
-@media screen and (max-width: 288px) {
+@media screen and (max-width: 344px) {
   * {
-    font-size:small !important;
+    font-size:small !important ;
   }
   #NavbarContenet h2 {
     margin-left: 0px;

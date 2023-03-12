@@ -48,28 +48,28 @@ const renderCountriesData = async (data) => {
       <div class="des1">
          <h2>${element.name.common}</h2>
          <div class="paraCard">
-         <p><b> Native Name:</b> ${
+         <p><b> Native Name  </b>  : ${
            element.name.nativeName
              ? Object.values(element.name.nativeName)[0].common ||
                element.name.nativeName
              : "No Native Name"
          }</p>
-         <p><b>Population: </b>${element.population.toLocaleString()}</p>
-         <p><b>Region: </b>${element.region}</p>
-         <p ><b>Sub Region:</b> ${element.subregion}</p>
-         <p><b>Capital: </b>${element.capital}</p>
+         <p><b>Population </b> :  ${ element.population.toLocaleString()}</p>
+         <p><b>Region  </b> :  ${ element.region}</p>
+         <p ><b>Sub Region</b>  :  ${ element.subregion}</p>
+         <p><b>Capital </b> :  ${ element.capital}</p>
     </div></div>
 
     <div class="des2" >
     <h2 class='noDisplay' style="visibility:hidden">ujk</h2>
     <div class="paraCard">
-         <p><b>Top Level Domain: </b>${element.tld}</p>
-         <p><b>Currencies:</b> ${
+         <p><b>Top Level Domain </b> :  ${element.tld}</p>
+         <p><b>Currencies</b>  :  ${
            element.currencies
              ? Object.values(element.currencies)[0].name
              : "No Currency"
          }</p>
-         <p><b>Languages: </b>${
+         <p><b>Languages</b>  :  ${
            element.languages
              ? Object.values(element.languages)
                  .sort((a, b) => a.localeCompare(b))
@@ -79,7 +79,7 @@ const renderCountriesData = async (data) => {
     </div></div>
 
     <div class="des3">
-      <p class='borderCountry'><b>Border Countries:</b>
+      <p class='borderCountry'><b>Border Countries  : </b>
         ${
           element.borders && element.borders.length
             ? borderingCountries.map((name) => {
