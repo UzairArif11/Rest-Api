@@ -56,7 +56,7 @@ toggleTheme.addEventListener("click", () => {
     toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
   } else if (currentTheme === "dark") {
     targetTheme = "light";
-    toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+    toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Light Mode`;
   }
 
   document.documentElement.setAttribute("data-theme", targetTheme);
@@ -68,13 +68,13 @@ window.addEventListener("load", () => {
   if (theme) {
     document.documentElement.setAttribute("data-theme", theme);
     if (theme === "light") {
-      toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+      toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Light Mode`;
     } else {
       toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
     }
   } else {
     document.documentElement.setAttribute("data-theme", "light");
-    toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Dark Mode`;
+    toggleTheme.innerHTML = `<i class="fa-regular fa-moon"></i>Light Mode`;
   }
 });
 // Search by country name
