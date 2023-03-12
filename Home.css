@@ -76,6 +76,7 @@ html[data-theme="light"] {
   justify-content: space-between;
 }
 .search-container {
+  padding: 14px;
   padding-right: 14vw;
   box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.15);
   padding-left: 5px;
@@ -106,13 +107,17 @@ html[data-theme="light"] {
   color: var(--textColor2);
   background-color: var(--bgColor);
 }
+.search-container i {
+ padding-left: 14px;
+
+}
 
 .Search #filter
  {
 
   background-color: var(--bgColor);
   color: var(--textColor);
-  padding: 10px;
+  padding: 20px;
   font-size: 16px;
   border-radius: 5px 0 0 5px;
  
