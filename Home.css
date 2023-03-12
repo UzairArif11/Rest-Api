@@ -27,6 +27,7 @@ html[data-theme="dark"] {
   --bgColor: #2d3743;
   --headerColor: #3b4959;
   --textColor: white;
+  --textColor2: white;
   --shadowColor: 0.1rem 0.1rem 0.3rem rgb(34, 33, 33);
   --image: url(find.svg);
 }
@@ -34,6 +35,7 @@ html[data-theme="light"] {
   --bgColor: hsl(0, 0%, 100%);
   --headerColor: hsl(0, 0%, 98%);
   --textColor: black;
+  --textColor2:#b0b0b0;
   --shadowColor: 0.1rem 0.1rem 0.3rem rgb(194, 187, 187);
   --image: url(search.svg);
 }
@@ -99,8 +101,9 @@ html[data-theme="light"] {
   color: var(--textColor);
   background-color: var(--bgColor);
 }
-.search-container input::placeholder {
-  color: var(--textColor);
+.search-container input::placeholder,
+.search-container i {
+  color: var(--textColor2);
   background-color: var(--bgColor);
 }
 
